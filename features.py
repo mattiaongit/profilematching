@@ -58,6 +58,12 @@ def sameRate(username, granularitiesFunction):
   samerate = [granularitiesFunction(bg) for bg in bigram]
   return [sum(samerate) / (len(username) -1)]
 
+def sameRateHandsFingers(usernames):
+  output = []
+  output.extend(sameRate(usernames, granularitiesFunction = sameFinger))
+  output.extend(sameRate(usernames, granularitiesFunction = sameHand))
+  return output
+
 # The percentage of keys typed using each finger order by hands order by finger (left-right/index,middle,pinkie,ring)
 @double
 def eachFingerRate(username):
@@ -97,7 +103,7 @@ def naivEntropy(text):
 # Longest Common Substring - data is a collection of strings, eg : ['mattia','mattiadmr']
 # If normalized return lcs lenght values in range [0,1] (normalized by the maximum length of the two\n strings)
 # Usefull to catch prefixes - suffixes
-def lcsubstring(data, normalized = False):
+def lcsubstring(data, normalized = True):
   substr = ''
   if len(data) > 1 and len(data[0]) > 0:
     for i in range(len(data[0])):
@@ -110,7 +116,7 @@ def lcsubstring(data, normalized = False):
 
 # Longest Common Subsequence
 # Usefull to detect abbreviations
-def lcs(data, normalized = False):
+def lcs(data, normalized = True):
     a = data[0]
     b = data[1]
     lengths = [[0 for j in range(len(b)+1)] for i in range(len(a)+1)]
