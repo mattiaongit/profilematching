@@ -50,7 +50,7 @@ def levenshtein(source, target):
 
         previous_row = current_row
 
-    return previous_row[-1]
+    return [previous_row[-1]]
 
 @splitParams
 def jaccard(s1,s2):
@@ -59,4 +59,4 @@ def jaccard(s1,s2):
     if len(ss1.union(ss2)) == 0:
       return 0
     else:
-      return 1 - len(ss1.intersection(ss2)) / len(ss1.union(ss2))
+      return [1 - len(ss1.intersection(ss2)) / len(ss1.union(ss2))]
