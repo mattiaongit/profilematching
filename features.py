@@ -88,6 +88,7 @@ def shannonEntropy(text):
   print(text)
   distribution = alphabetDistribution(text)
   entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distribution, 0)
+  print(entropy)
   return [entropy]
 
 def naivEntropy(text):
