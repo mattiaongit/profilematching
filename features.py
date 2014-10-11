@@ -10,6 +10,14 @@ alphabet = string.ascii_lowercase
 ### METRICS FUNCTIONS ###
 ### PATTERNS DUE TO HUMAN LIMATIONS ###
 
+def double(f):
+  def _f(*args,**kwargs):
+    output = []
+    output.append(f(args[0][0],**kwargs))
+    output.append(f(args[0][1],**kwargs))
+    return output
+  return _f
+
 # Username lenght likelihood
 def ull(usernames):
   return distribution(list(len(x) for x in usernames))
@@ -50,6 +58,7 @@ def sameRate(username, granularitiesFunction):
   return [sum(samerate) / (len(username) -1)]
 
 # The percentage of keys typed using each finger order by hands order by finger (left-right/index,middle,pinkie,ring)
+@double
 def eachFingerRate(username):
   to_flat = [[(finger, hand, sum([username.count(key)
             for key in typing_map[hand][finger]])/len(username))
@@ -59,6 +68,7 @@ def eachFingerRate(username):
   return [el[2] for el in ordered]
 
 #The percentage of keys pressed on rows: Top Row, Home Row, Bottom Row, and Number Row
+@double
 def rowsRate(username):
   return [sum([c in row for c in username]) for row in typing_row]
 
@@ -68,10 +78,10 @@ def travelledDistance(username):
   pass
 
 ### ENDOGENOUS FACTORS ###
-
+@double
 def alphabetDistribution(username):
   return [username.count(c)/len(username) for c in alphabet]
-
+@double
 def shannonEntropy(text):
   distribution = alphabetDistribution(text)
   return [reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distribution, 0)]
