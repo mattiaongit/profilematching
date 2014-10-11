@@ -13,8 +13,8 @@ alphabet = string.ascii_lowercase
 def double(f):
   def _f(*args,**kwargs):
     output = []
-    output.append(f(args[0][0],**kwargs))
-    output.append(f(args[0][1],**kwargs))
+    output.extend(f(args[0][0],**kwargs))
+    output.extend(f(args[0][1],**kwargs))
     return output
   return _f
 
