@@ -85,10 +85,8 @@ def alphabetDistribution(username):
 
 @double
 def shannonEntropy(text):
-  print(text)
-  distribution = alphabetDistribution(text)
+  distribution = [text.count(c)/len(text) for c in alphabet]
   entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distribution, 0)
-  print(entropy)
   return [entropy]
 
 def naivEntropy(text):
