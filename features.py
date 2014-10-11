@@ -111,8 +111,8 @@ def lcsubstring(data, normalized = False):
 # Longest Common Subsequence
 # Usefull to detect abbreviations
 def lcs(data, normalized = False):
-    a = data[0][0]
-    b = data[0][1]
+    a = data[0]
+    b = data[1]
     lengths = [[0 for j in range(len(b)+1)] for i in range(len(a)+1)]
     for i, x in enumerate(a):
         for j, y in enumerate(b):
