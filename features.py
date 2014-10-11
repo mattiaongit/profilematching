@@ -82,10 +82,12 @@ def travelledDistance(username):
 @double
 def alphabetDistribution(username):
   return [username.count(c)/len(username) for c in alphabet]
+
 @double
 def shannonEntropy(text):
   distribution = alphabetDistribution(text)
-  return [reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distribution, 0)]
+  entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distribution, 0)
+  return [entropy]
 
 def naivEntropy(text):
   text = set(text).intersection(set(alphabet))
