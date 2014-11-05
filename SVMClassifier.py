@@ -30,14 +30,14 @@ class SVMClassifier:
   def test(self, output = False):
     y_pred = []
     #TEST
+    print("predictions ...")
     for t in self.X_test:
-      print("predictions ...")
       y_pred.append(self.clf.predict(t))
 
     # OUTPUT CLASSIFICATOR SCORES
     # Consider to move this metrics on self
-    precision = sklearn.metrics.precision_score(self.y_test,y_pred)
-    recall = sklearn.metrics.recall_score(self.y_test,y_pred)
+    precision = metrics.precision_score(self.y_test,y_pred)
+    recall = metrics.recall_score(self.y_test,y_pred)
     f1 = 2 * ( (precision * recall) / (precision + recall) )
     if output:
       print("{0} prec: {1}, rec: {2}, f1: {3}".format(key,precision,recall,f1))
