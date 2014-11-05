@@ -27,10 +27,10 @@ features_functions = [ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,
 
 def vectorize(pair, debug = False):
     if debug:
-        return [(f.__name__,f(pair)) for f in features_fucntions]
+        return [(f.__name__,f(pair)) for f in features_functions]
     else:
         features_vector = []
-        [features_vector.extend(f(pair)) for f in features_fucntions]
+        [features_vector.extend(f(pair)) for f in features_functions]
         return features_vector
 
 vectorize(['mattia','mattiadmr'])
