@@ -1,4 +1,5 @@
 from __future__ import division
+from functools import wraps
 import numpy as np
 
 
@@ -10,6 +11,7 @@ def normalize(text):
 # TODO : THIS WOULD ACCEPT A STRING AS A PARAMETER AND TAKE THE TWO FIRSTS CHARACTER
 # I SHOULD DO SOME CHECK ON THE TYPE - list or tuple - AND EVENTUALLY RAISE SOME EXCEPTION
 def splitParams(f):
+    @wraps(f)
     def _f(*args, **kwargs):
         return f(normalize(args[0][0]),normalize(args[0][1]))
     return _f
