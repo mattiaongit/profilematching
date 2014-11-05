@@ -20,7 +20,7 @@ class SVMClassifier:
   def normalizeData(axis,type):
     # self.X_train = preprocessing.scale(X_train)
     # self.X_test = preprocessing.scale(X_test)
-
+    pass
 
   def train(params):
     self.clf = svm.SVC(**params)
