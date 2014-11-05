@@ -3,6 +3,7 @@ from distances import *
 
 from random import shuffle
 from itertools import combinations
+from SVMClassifier import *
 
 import pymongo
 
@@ -33,4 +34,33 @@ def vectorize(pair, debug = False):
         [features_vector.extend(f(pair)) for f in features_functions]
         return features_vector
 
-print(vectorize(['mattia','mattiadmr']))
+for profile in list(dbprofiles):
+  profilePairs = list(combinations(profile.items(),2))
+  for pair in profilePairs:
+    sn1 = pair[0][0].capitalize()
+    sn2 = pair[1][0].capitalize()
+    socialNetowrks.update(set((sn1,sn2)))
+    key = tuple(sorted((sn1,sn2)))
+    if key not in profilesPairs.keys():
+        profilesPairs[key] = []
+    profilesPairs[key].append((pair[0][1]['username'],pair[1][1]['username']))
+
+
+# Extract pairs of a specific social networks pair
+dataset = profilesPairs[('Facebook','Twitter')]
+dataset = [pair for pair in dataset if len(pair[0]) > 0 and len(pair[1]) > 0]
+raw_data = dataset + shuffleProfiles(dataset)
+# LABELS OF DATASET (1: positive match, 0: negative match)
+# THE SHUFFLED USERNAME PAIRS IS GOING TO BE LABELLED AS 0
+targets = [1] * len(dataset) + [0] * len(dataset)
+data = []
+# BUILDING FEATURES INPUT VECTOR
+for sample in raw_data:
+  data.append(vectorize(sample))
+
+
+SVMClf = SVMClassifier(data, targets)
+
+SVMClf.splitDataTrainingTest(2)
+
+print(len(SVMClf.X_test))

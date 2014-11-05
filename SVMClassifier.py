@@ -2,11 +2,10 @@ from sklearn import cross_validation, grid_search, metrics, preprocessing, svm
 
 class SVMClassifier:
 
-  def __init__(self, datafunction):
+  def __init__(self, data, targets):
     #Filling instance variables with datafunction
-    self.data = []
-    self.samples = []
-    self.labels = []
+    self.data = data
+    self.targets = targets
     self.X_train, self.X_test, self.y_train, self.y_test = [],[],[],[]
 
     # Classifier
@@ -15,9 +14,7 @@ class SVMClassifier:
 
   def splitDataTrainingTest(fraction):
     #Split training set from data
-    # self.X_train, self.X_test, self.y_train, self.y_test = cross_validation.train_test_split(
-    #   self.data, self.targets, test_size = len(self.data)/fraction , random_state = 0 )
-    pass
+    self.X_train, self.X_test, self.y_train, self.y_test = cross_validation.train_test_split( self.data, self.targets, test_size = len(self.data)/fraction , random_state = 0 )
 
 
   def normalizeData(axis,type):
@@ -32,5 +29,3 @@ class SVMClassifier:
 
   def score(scoring, tuned_parameters):
     pass
-
-
