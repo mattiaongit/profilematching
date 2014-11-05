@@ -24,7 +24,7 @@ def shuffleProfiles(profilePair):
   return  list(zip(l1,l2))
 
 
-features_functions = [ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x : sameRate(x,granularitiesFunction=sameHand),lambda x : sameRate(x,granularitiesFunction=sameFinger),levenshtein,jaccard,shannonEntropy,lcsubstring,lcs]
+features_functions = [sameUsername, ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x : sameRate(x,granularitiesFunction=sameHand),lambda x : sameRate(x,granularitiesFunction=sameFinger),levenshtein,jaccard,shannonEntropy,lcsubstring,lcs]
 
 def vectorize(pair, debug = False):
     if debug:
@@ -59,13 +59,40 @@ for sample in raw_data:
   data.append(vectorize(sample))
 
 
-SVMClf = SVMClassifier(data, targets)
+SVMClf1 = SVMClassifier(data, targets)
 
-SVMClf.splitDataTrainingTest(2)
+SVMClf1.splitDataTrainingTest(2)
 
-SVMClf.normalizeData('scale',{'axis':0})
+# scaler from sklearn, es: MinMaxScaler, StandardScaler
+SVMClf1.normalizeData(sklearn.preprocessing.StandardScaler)
 
 params = {'C':100, 'cache_size':200, 'class_weight':None, 'coef0':0.0, 'degree':3, 'gamma':0.0001, 'kernel':'rbf', 'max_iter':-1, 'probability':False, 'random_state':None, 'shrinking':True, 'tol':0.001, 'verbose':False}
-SVMClf.train(params)
+SVMClf1.train(params)
 
-SVMClf.test(output = True)
+SVMClf1.test(output = True)
+
+
+SVMClf2 = SVMClassifier(data, targets)
+
+SVMClf2.splitDataTrainingTest(2)
+
+# scaler from sklearn, es: MinMaxScaler, StandardScaler
+SVMClf2.normalizeData(sklearn.preprocessing.MinMaxScaler)
+
+params = {'C':100, 'cache_size':200, 'class_weight':None, 'coef0':0.0, 'degree':3, 'gamma':0.0001, 'kernel':'rbf', 'max_iter':-1, 'probability':False, 'random_state':None, 'shrinking':True, 'tol':0.001, 'verbose':False}
+SVMClf2.train(params)
+
+SVMClf2.test(output = True)
+
+
+SVMClf3 = SVMClassifier(data, targets)
+
+SVMClf3.splitDataTrainingTest(2)
+
+# scaler from sklearn, es: MinMaxScaler, StandardScaler
+SVMClf3.normalizeData(sklearn.preprocessing.scale)
+
+params = {'C':100, 'cache_size':200, 'class_weight':None, 'coef0':0.0, 'degree':3, 'gamma':0.0001, 'kernel':'rbf', 'max_iter':-1, 'probability':False, 'random_state':None, 'shrinking':True, 'tol':0.001, 'verbose':False}
+SVMClf3.train(params)
+
+SVMClf3.test(output = True)
