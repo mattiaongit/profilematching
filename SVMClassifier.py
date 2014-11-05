@@ -24,7 +24,7 @@ class SVMClassifier:
   def train(self,params):
     print("training ...")
     self.clf = svm.SVC(**params)
-    self.clf.fit(self.X_train,self.X_test)
+    self.clf.fit(self.X_train,self.y_train)
 
 
   def test(self, output = False):
