@@ -25,5 +25,10 @@ def shuffleProfiles(profilePair):
 
 features_functions = [ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x : sameRate(x,granularitiesFunction=sameHand),lambda x : sameRate(x,granularitiesFunction=sameFinger),levenshtein,jaccard,shannonEntropy,lcsubstring,lcs]
 
-def vectorize(pair):
-    return [f(pair) for f in features_fucntions]
+def vectorize(pair, debug = False):
+    if debug:
+        return [(f.__name__,f(pair)) for f in features_fucntions]
+    else:
+        features_vector = []
+        [features_vector.extend(f(pair)) for f in features_fucntions]
+        return features_vector
