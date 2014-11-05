@@ -8,6 +8,7 @@ from keyboard import *
 alphabet = string.ascii_lowercase
 
 def double(f):
+  @wraps(f)
   def _f(*args,**kwargs):
     output = []
     output.extend(f(args[0][0],**kwargs))
