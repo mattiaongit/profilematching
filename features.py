@@ -7,9 +7,6 @@ from keyboard import *
 
 alphabet = string.ascii_lowercase
 
-### METRICS FUNCTIONS ###
-### PATTERNS DUE TO HUMAN LIMATIONS ###
-
 def double(f):
   def _f(*args,**kwargs):
     output = []
@@ -18,6 +15,13 @@ def double(f):
     return output
   return _f
 
+### METRICS FUNCTIONS ###
+### PATTERNS DUE TO HUMAN LIMATIONS  Time/Memory###
+
+# Same username
+def sameUsername(candidate,priors):
+    return priors.count(candidate)
+
 # Username lenght likelihood
 def ull(usernames):
   return distribution(list(len(x) for x in usernames))
@@ -25,7 +29,6 @@ def ull(usernames):
 # Unique username creation likelihood
 def uucl(usernames):
   return [len(set(usernames)) / len(usernames)]
-
 
 ### EXOGENOUS FACTORS ###
 ### TYPING PATTERNS ###
@@ -147,5 +150,3 @@ def lcs(data, normalized = True):
 # TODO : How to apply this to strings? Alignment on time makes any sense on strings?
 def dtw(data):
   pass
-
-
