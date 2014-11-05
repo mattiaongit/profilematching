@@ -24,7 +24,7 @@ def shuffleProfiles(profilePair):
   return  list(zip(l1,l2))
 
 
-features_functions = [sameUsername, ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x : sameRate(x,granularitiesFunction=sameHand),lambda x : sameRate(x,granularitiesFunction=sameFinger),levenshtein,jaccard,shannonEntropy,lcsubstring,lcs]
+features_functions = [ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x : sameRate(x,granularitiesFunction=sameHand),lambda x : sameRate(x,granularitiesFunction=sameFinger),levenshtein,jaccard,shannonEntropy,lcsubstring,lcs]
 
 def vectorize(pair, debug = False):
     if debug:
