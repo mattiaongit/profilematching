@@ -32,3 +32,5 @@ def vectorize(pair, debug = False):
         features_vector = []
         [features_vector.extend(f(pair)) for f in features_fucntions]
         return features_vector
+
+vectorize(['mattia','mattiadmr'])
