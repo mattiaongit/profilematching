@@ -40,7 +40,7 @@ class SVMClassifier:
     recall = metrics.recall_score(self.y_test,y_pred)
     f1 = 2 * ( (precision * recall) / (precision + recall) )
     if output:
-      print("{0} prec: {1}, rec: {2}, f1: {3}".format(key,precision,recall,f1))
+      print("prec: {0}, rec: {1}, f1: {2}".format(precision,recall,f1))
 
   def score(self,scoring, tuned_parameters):
     pass
