@@ -21,7 +21,7 @@ def double(f):
 
 # Same username
 def sameUsername(usernames):
-    return [usernames[1]].count(usernames[0])
+    return [[usernames[1]].count(usernames[0])]
 
 # Username lenght likelihood
 def ull(usernames):
