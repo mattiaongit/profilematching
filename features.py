@@ -20,8 +20,8 @@ def double(f):
 ### PATTERNS DUE TO HUMAN LIMATIONS  Time/Memory###
 
 # Same username
-def sameUsername(candidate,priors):
-    return priors.count(candidate)
+def sameUsername(usernames):
+    return [username[1]].count(usernames[0])
 
 # Username lenght likelihood
 def ull(usernames):
