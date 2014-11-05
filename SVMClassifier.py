@@ -17,9 +17,9 @@ class SVMClassifier:
     self.X_train, self.X_test, self.y_train, self.y_test = cross_validation.train_test_split( self.data, self.targets, test_size = len(self.data)/fraction , random_state = 0 )
 
 
-  def normalizeData(self,axis,type):
-    self.X_train = preprocessing.scale(X_train)
-    self.X_test = preprocessing.scale(X_test)
+  def normalizeData(self,type,params):
+    self.X_train = preprocessing.scale(X_train,**params)
+    self.X_test = preprocessing.scale(X_test,**params)
 
   def train(self,params):
     print("training ...")
