@@ -4,6 +4,7 @@ from distances import *
 from random import shuffle
 from itertools import combinations
 from SVMClassifier import *
+import sklearn.preprocessing
 
 import pymongo
 
