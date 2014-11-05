@@ -18,8 +18,11 @@ class SVMClassifier:
 
 
   def normalizeData(self,type,params):
-    self.X_train = preprocessing.scale(self.X_train,**params)
-    self.X_test = preprocessing.scale(self.X_test,**params)
+    scaler = preprocessing.StandardScaler(copy=False)
+    scaler.fit_transform(self.X_train)
+    scaler.fit_transform(self.X_test)
+    #self.X_train = preprocessing.scale(self.X_train,**params)
+    #self.X_test = preprocessing.scale(self.X_test,**params)
 
   def train(self,params):
     print("training ...")
