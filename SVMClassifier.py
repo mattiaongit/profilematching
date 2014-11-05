@@ -18,7 +18,7 @@ class SVMClassifier:
 
 
   def normalizeData(self,scaler_function):
-    scaler = preprocessing.scaler_function(copy=False)
+    scaler = preprocessing.__dict__[scaler_function.__name__](copy=False)
     scaler.fit_transform(self.X_train)
     scaler.fit_transform(self.X_test)
 
