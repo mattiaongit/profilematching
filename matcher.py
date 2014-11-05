@@ -63,6 +63,8 @@ SVMClf = SVMClassifier(data, targets)
 
 SVMClf.splitDataTrainingTest(2)
 
+SVMClf.normalizeData('scale',{'axis':0})
+
 params = {'C':100, 'cache_size':200, 'class_weight':None, 'coef0':0.0, 'degree':3, 'gamma':0.0001, 'kernel':'rbf', 'max_iter':-1, 'probability':False, 'random_state':None, 'shrinking':True, 'tol':0.001, 'verbose':False}
 SVMClf.train(params)
 
