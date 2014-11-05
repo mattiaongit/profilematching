@@ -1,5 +1,5 @@
 from  __future__ import division
-from functools import reduce
+from functools import reduce, wraps
 import math
 import string
 from stats import distribution
