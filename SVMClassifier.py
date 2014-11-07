@@ -26,6 +26,8 @@ class SVMClassifier:
     print("training ...")
     self.clf = svm.SVC(**params)
     self.clf.fit(self.X_train,self.y_train)
+    print("trained, classifer internal status:")
+    print(self.clf.coef_)
 
 
   def test(self, output = False):
