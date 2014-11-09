@@ -24,7 +24,7 @@ def sameUsername(candidate, priors):
     return [priors.count(candidate)]
 
 # Username lenght likelihood
-def ull(candidate,priors):
+def ull(candidate, priors):
   return [len(candidate)].extend(distribution([len(p) for p in priors]))
 
 # Unique username creation likelihood
@@ -126,7 +126,7 @@ def alphabetDistribution(candidate,priors):
 
   priors_data = []
   for p in priors:
-    priors_data.extend([p.count(c)/len(p) for c in alphabet])
+    priors_data.append([p.count(c)/len(p) for c in alphabet])
   column_data = zip(*priors_data)
   [output.extend(distribution(d)) for d in column_data]
   return output
