@@ -93,7 +93,7 @@ def eachFingerRate(candidate, priors):
               for finger in typing_map[hand]]
               for hand in typing_map.keys()]
     ordered = sorted([rate for hand in to_flat for rate in hand], key = lambda tup: (tup[0],tup[1]))
-    priors_data.extend([el[2] for el in ordered])
+    priors_data.append([el[2] for el in ordered])
 
   column_data = zip(*priors_data)
   [output.extend(distribution(d)) for d in column_data]
@@ -108,7 +108,7 @@ def rowsRate(candidate, priors):
 
   priors_data = []
   for p in priors:
-      priors_data.extend([sum([c in row for c in p]) for row in typing_row])
+      priors_data.append([sum([c in row for c in p]) for row in typing_row])
   column_data = zip(*priors_data)
   [output.extend(distribution(d)) for d in column_data]
   return output
@@ -141,7 +141,7 @@ def shannonEntropy(candidate, priors):
   for p in priors:
     distribution = [p.count(c)/len(p) for c in alphabet]
     entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distribution, 0)
-    priors_data.extend([entropy])
+    priors_data.append([entropy])
 
   column_data = zip(*priors_data)
   [output.extend(distribution(d)) for d in column_data]
