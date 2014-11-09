@@ -25,14 +25,14 @@ def shuffleProfiles(profilePair):
   return  list(zip(l1,l2))
 
 
-features_functions = [sameUsername, ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x : sameRate(x,granularitiesFunction=sameHand),lambda x : sameRate(x,granularitiesFunction=sameFinger),levenshtein,jaccard,shannonEntropy,lcsubstring,lcs]
+features_functions = [sameUsername, ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x,y : sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),levenshtein,jaccard,shannonEntropy,lcsubstring,lcs]
 
 def vectorize(pair, debug = False):
     if debug:
-        return [(f.__name__,f(pair)) for f in features_functions]
+        return [(f.__name__,f(pair[0],[pair[1]])) for f in features_functions]
     else:
         features_vector = []
-        [features_vector.extend(f(pair)) for f in features_functions]
+        [features_vector.extend(f(pair[0],[pair[1]])) for f in features_functions]
         return features_vector
 
 for profile in list(dbprofiles):
