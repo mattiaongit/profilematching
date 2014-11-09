@@ -139,8 +139,8 @@ def shannonEntropy(candidate, priors):
 
   priors_data = []
   for p in priors:
-    distribution = [p.count(c)/len(p) for c in alphabet]
-    entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distribution, 0)
+    distri = [p.count(c)/len(p) for c in alphabet]
+    entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distri, 0)
     priors_data.append([entropy])
 
   column_data = zip(*priors_data)
