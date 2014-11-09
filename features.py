@@ -120,13 +120,13 @@ def travelledDistance(username):
   pass
 
 ### ENDOGENOUS FACTORS ###
-def alphabetDistribution(candidate, priors):
+def alphabetDistribution(candidate,priors):
   output = []
   output.extend([candidate.count(c)/len(candidate) for c in alphabet])
 
   priors_data = []
   for p in priors:
-    priors_data.extend(p.count(c)/len(p) for c in alphabet])
+    priors_data.extend([p.count(c)/len(p) for c in alphabet])
   column_data = zip(*priors_data)
   [output.extend(distribution(d)) for d in column_data]
   return output
