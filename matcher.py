@@ -27,14 +27,13 @@ def shuffleProfiles(profilePair):
   return  list(zip(l1,l2))
 
 
-features_functions = [sameUsername, ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x,y : sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),levenshtein,jaccard,shannonEntropy,lcsubstring,lcs]
+features_functions = [sameUsername, ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x,y : sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),shannonEntropy,lcsubstring,lcs]
 
 def vectorize(pair, debug = False):
     if debug:
         return [(f.__name__,f(pair[0],[pair[1]])) for f in features_functions]
     else:
         features_vector = []
-        pdb.set_trace()
         [features_vector.extend(f(pair[0],[pair[1]])) for f in features_functions]
         return features_vector
 
