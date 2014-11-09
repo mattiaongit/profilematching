@@ -8,6 +8,8 @@ import sklearn.preprocessing
 
 import pymongo
 
+import pdb
+
 
 #IMPORT DATA FROM DB
 connection = pymongo.Connection()
@@ -32,6 +34,7 @@ def vectorize(pair, debug = False):
         return [(f.__name__,f(pair[0],[pair[1]])) for f in features_functions]
     else:
         features_vector = []
+        pdb.set_trace()
         [features_vector.extend(f(pair[0],[pair[1]])) for f in features_functions]
         return features_vector
 
