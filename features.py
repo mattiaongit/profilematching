@@ -25,7 +25,9 @@ def sameUsername(candidate, priors):
 
 # Username lenght likelihood
 def ull(candidate, priors):
-  return [len(candidate)].extend(distribution([len(p) for p in priors]))
+  output = [len(candidate)]
+  output.extend(distribution([len(p) for p in priors]))
+  return output
 
 # Unique username creation likelihood
 def uucl(candidate, priors):
@@ -61,7 +63,7 @@ def sameRate(candidate, priors, granularitiesFunction):
   candidate = candidate.replace(" ","").lower()
   bigram = biGrams(candidate)
   samerate = [granularitiesFunction(bg) for bg in bigram]
-  output.exted([sum(samerate) / (len(candidate) -1)])
+  output.extend([sum(samerate) / (len(candidate) -1)])
 
   priors_data = []
   for p in priors:
@@ -133,14 +135,14 @@ def alphabetDistribution(candidate,priors):
 
 def shannonEntropy(candidate, priors):
   output = []
-  distribution = [candidate.count(c)/len(candidate) for c in alphabet]
-  entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distribution, 0)
+  alphabetdstr = [candidate.count(c)/len(candidate) for c in alphabet]
+  entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), alphabetdstr, 0)
   output.extend([entropy])
 
   priors_data = []
   for p in priors:
-    distri = [p.count(c)/len(p) for c in alphabet]
-    entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), distri, 0)
+    alpahabetdstr = [p.count(c)/len(p) for c in alphabet]
+    entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), alpahabetdstr, 0)
     priors_data.append([entropy])
 
   column_data = zip(*priors_data)
