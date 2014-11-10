@@ -55,7 +55,7 @@ dataset = [pair for pair in dataset if len(pair[0]) > 0 and len(pair[1]) > 0]
 raw_data = dataset + shuffleProfiles(dataset)
 # LABELS OF DATASET (1: positive match, 0: negative match)
 # THE SHUFFLED USERNAME PAIRS IS GOING TO BE LABELLED AS 0
-targets = [1] * len(dataset/2) + [0] * len(dataset/2) + [1] * len(dataset/2)  + [0] * len(dataset/2)
+targets = [1] * len(dataset)/2 + [0] * len(dataset)/2 + [1] * len(dataset)/2  + [0] * len(dataset)/2
 data = []
 # BUILDING FEATURES INPUT VECTOR
 for sample in raw_data:
