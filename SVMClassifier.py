@@ -27,7 +27,7 @@ class SVMClassifier:
   def gridSearch(self,tuning_parameters, scores):
     for score in scores:
         print("# Tuning hyper-parameters for %s \r\n" % score)
-        clf = grid_search.GridSearchCV(SVC(C=1), tuned_parameters, cv=5, scoring=score)
+        clf = grid_search.GridSearchCV(svm.SVC(C=1), tuned_parameters, cv=5, scoring=score)
         clf.fit(self.X_train, self.y_train)
         print("Best parameters set found on development set:\r\n")
         print(clf.best_estimator_)
