@@ -7,14 +7,21 @@ from keyboard import *
 
 alphabet = string.ascii_lowercase
 
-def double(f):
+def candidatepriors(f):
   @wraps(f)
   def _f(*args,**kwargs):
     output = []
     output.extend(f(args[0][0],**kwargs))
-    output.extend(f(args[0][1],**kwargs))
+
+    priors_data = []
+    priors = args[1]
+    for p in priors
+        priors_data.append(f(p,**kwargs))
+    column_data = zip(*priors_data)
+    [output.extend(distribution(d)) for d in column_data]
     return output
   return _f
+
 
 ### METRICS FUNCTIONS ###
 ### PATTERNS DUE TO HUMAN LIMATIONS  Time/Memory###
@@ -57,63 +64,31 @@ def sameFinger(keys):
 
 # The percentage of keys typed using the same (X) used for the previous key.
 # (X) depending on the granularities e.g 'Hand' or 'Finger'
-def sameRate(candidate, priors, granularitiesFunction):
-  output = []
-
-  candidate = candidate.replace(" ","").lower()
-  bigram = biGrams(candidate)
+@candidatepriors
+def sameRate(username, granularitiesFunction):
+  username = username.replace(" ","").lower()
+  bigram = biGrams(username)
   samerate = [granularitiesFunction(bg) for bg in bigram]
-  output.extend([sum(samerate) / (len(candidate) -1)])
-
-  priors_data = []
-  for p in priors:
-    p = p.replace(" ","").lower()
-    bigram = biGrams(p)
-    samerate = [granularitiesFunction(bg) for bg in bigram]
-    priors_data.append([sum(samerate) / (len(p) -1)])
-
-  column_data = zip(*priors_data)
-  [output.extend(distribution(d)) for d in column_data]
-  return output
+  return [sum(samerate) / (len(username) -1)]
 
 
 # The percentage of keys typed using each finger order by hands order by finger (left-right/index,middle,pinkie,ring)
 
-def eachFingerRate(candidate, priors):
-  output = []
-  to_flat = [[(finger, hand, sum([candidate.count(key)
-            for key in typing_map[hand][finger]])/len(candidate))
+@candidatepriors
+def eachFingerRate(username):
+  to_flat = [[(finger, hand, sum([username.count(key)
+            for key in typing_map[hand][finger]])/len(username))
             for finger in typing_map[hand]]
             for hand in typing_map.keys()]
   ordered = sorted([rate for hand in to_flat for rate in hand], key = lambda tup: (tup[0],tup[1]))
-  output.extend([el[2] for el in ordered])
-
-  priors_data = []
-  for p in priors:
-    to_flat = [[(finger, hand, sum([p.count(key)
-              for key in typing_map[hand][finger]])/len(p))
-              for finger in typing_map[hand]]
-              for hand in typing_map.keys()]
-    ordered = sorted([rate for hand in to_flat for rate in hand], key = lambda tup: (tup[0],tup[1]))
-    priors_data.append([el[2] for el in ordered])
-
-  column_data = zip(*priors_data)
-  [output.extend(distribution(d)) for d in column_data]
-  return output
-
+  return [el[2] for el in ordered]
 
 
 #The percentage of keys pressed on rows: Top Row, Home Row, Bottom Row, and Number Row
-def rowsRate(candidate, priors):
-  output = []
-  output.extend([sum([c in row for c in candidate]) for row in typing_row])
+@candidatepriors
+def rowsRate(username):
+  return [sum([c in row for c in username]) for row in typing_row]
 
-  priors_data = []
-  for p in priors:
-      priors_data.append([sum([c in row for c in p]) for row in typing_row])
-  column_data = zip(*priors_data)
-  [output.extend(distribution(d)) for d in column_data]
-  return output
 
 
 # The approximate distance (in meters) traveled for typing a username
@@ -122,32 +97,15 @@ def travelledDistance(username):
   pass
 
 ### ENDOGENOUS FACTORS ###
-def alphabetDistribution(candidate,priors):
-  output = []
-  output.extend([candidate.count(c)/len(candidate) for c in alphabet])
+@candidatepriors
+def alphabetDistribution(username):
+  return [username.count(c)/len(username) for c in alphabet]
 
-  priors_data = []
-  for p in priors:
-    priors_data.append([p.count(c)/len(p) for c in alphabet])
-  column_data = zip(*priors_data)
-  [output.extend(distribution(d)) for d in column_data]
-  return output
-
-def shannonEntropy(candidate, priors):
-  output = []
-  alphabetdstr = [candidate.count(c)/len(candidate) for c in alphabet]
+@candidatepriors
+def shannonEntropy(username):
+  alphabetdstr = [username.count(c)/len(username) for c in alphabet]
   entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), alphabetdstr, 0)
-  output.extend([entropy])
-
-  priors_data = []
-  for p in priors:
-    alpahabetdstr = [p.count(c)/len(p) for c in alphabet]
-    entropy = reduce((lambda x,y: x - (y * math.log(y,2) if y > 0 else 0)), alpahabetdstr, 0)
-    priors_data.append([entropy])
-
-  column_data = zip(*priors_data)
-  [output.extend(distribution(d)) for d in column_data]
-  return output
+  return [entropy]
 
 
 def naivEntropy(text):
