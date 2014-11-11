@@ -68,7 +68,7 @@ def sameRate(username, granularitiesFunction):
   username = username.replace(" ","").lower()
   bigram = biGrams(username)
   samerate = [granularitiesFunction(bg) for bg in bigram]
-  return [sum(samerate) / (len(username) -1)]
+  return (len(username) == 1 and [1]) or [sum(samerate) / (len(username) -1)]
 
 
 # The percentage of keys typed using each finger order by hands order by finger (left-right/index,middle,pinkie,ring)
