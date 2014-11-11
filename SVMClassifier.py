@@ -33,7 +33,7 @@ class SVMClassifier:
         print()
         print("Grid scores on development set:\r\n")
         for params, mean_score, scores in clf.grid_scores_:
-        print("%0.3f (+/-%0.03f) for %r" % (mean_score, scores.std() / 2, params))
+            print("%0.3f (+/-%0.03f) for %r" % (mean_score, scores.std() / 2, params))
         print()
         print("Detailed classification report:\r\n")
         print("The model is trained on the full development set.")
