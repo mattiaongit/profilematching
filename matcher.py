@@ -23,6 +23,9 @@ def shuffleProfiles(profilePair):
   l1,l2 = zip(*profilePair)
   l = list(l2)
   shuffle(l)
+  while sum([el[0] == el[1] for el in zip(l,l2)]) > 0 :
+      print('needed another shuffle')
+      shuffle(l)
   l2 = tuple(l)
   return  list(zip(l1,l2))
 
