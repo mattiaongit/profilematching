@@ -23,7 +23,7 @@ class SVMClassifier:
     scaler.fit_transform(self.X_test)
 
 
-  def gridSearch(tuning_parameters, scores):
+  def gridSearch(self,tuning_parameters, scores):
     for score in scores:
         print("# Tuning hyper-parameters for %s \r\n" % score)
         clf = GridSearchCV(SVC(C=1), tuned_parameters, cv=5, scoring=score)
