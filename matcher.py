@@ -71,7 +71,7 @@ SVMClf1 = SVMClassifier(data, targets)
 SVMClf1.splitDataTrainingTest(2)
 
 # scaler from sklearn, es: MinMaxScaler, StandardScaler
-SVMClf1.normalizeData(sklearn.preprocessing.MinMaxScaler)
+SVMClf1.normalizeData(sklearn.preprocessing.StandardScaler)
 
 
 tuning_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],
