@@ -64,7 +64,6 @@ def sameFinger(keys):
 
 # The percentage of keys typed using the same (X) used for the previous key.
 # (X) depending on the granularities e.g 'Hand' or 'Finger'
-@candidatepriors
 def sameRate(username, granularitiesFunction):
   username = username.replace(" ","").lower()
   bigram = biGrams(username)
