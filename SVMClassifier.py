@@ -1,5 +1,6 @@
 from sklearn import cross_validation, grid_search, metrics, preprocessing, svm
 
+
 class SVMClassifier:
 
   def __init__(self, data, targets):
@@ -26,7 +27,7 @@ class SVMClassifier:
   def gridSearch(self,tuning_parameters, scores):
     for score in scores:
         print("# Tuning hyper-parameters for %s \r\n" % score)
-        clf = GridSearchCV(SVC(C=1), tuned_parameters, cv=5, scoring=score)
+        clf = grid_search.GridSearchCV(SVC(C=1), tuned_parameters, cv=5, scoring=score)
         clf.fit(self.X_train, self.y_train)
         print("Best parameters set found on development set:\r\n")
         print(clf.best_estimator_)
@@ -39,7 +40,7 @@ class SVMClassifier:
         print("The model is trained on the full development set.")
         print("The scores are computed on the full evaluation set.\r\n")
         y_true, y_pred = self.y_test, clf.predict(self.X_test)
-        print(classification_report(y_true, y_pred))
+        print(metrics.classification_report(y_true, y_pred))
         print()
 
   def train(self,params):
