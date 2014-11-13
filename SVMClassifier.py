@@ -69,7 +69,7 @@ class SVMClassifier:
 
     fpr, tpr, tresholds = metrics.roc_curve(self.y_test,y_pred, pos_label = 1)
     auc = metrics.auc(fpr,tpr)
-    prit("AUC score")
+    print("AUC score")
     print(auc)
 
   def score(self,scoring, tuned_parameters):
