@@ -57,7 +57,7 @@ def sameHand(keys, handInfo = False, layout = 'qwerty'):
 
 def sameFinger(keys, layout = 'qwerty'):
   if sameHand(keys, layout = layout):
-    samefinger = [all((keys[0] in finger, keys[1] in finger)) for finger in typing_map[sameHand(keys,True, layout)].values()]
+    samefinger = [all((keys[0] in finger, keys[1] in finger)) for finger in typing_map[layout][sameHand(keys,True, layout)].values()]
     return sum(samefinger) > 0 and True or False
   else:
     return False

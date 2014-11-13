@@ -20,17 +20,17 @@ typing_map ={
     'dvorak': {
       'left':
         {
-          'pinkie' : ('q', 'a', 'z'),
-          'ring' : ('w','s','x'),
-          'middle' : ('e','d','c'),
-          'index' : ('r','f','v','t','g','b')
+          'pinkie' : ('a', ';'),
+          'ring' : (',','o','q'),
+          'middle' : ('.','e','j'),
+          'index' : ('p','u','k','y','i','x')
         },
       'right':
         {
-          'index' : ('y','h','n','u','j','m'),
-          'middle' : ('i','k',','),
-          'ring' : ('o','l','.'),
-          'pinkie' : ('p',';')
+          'index' : ('f','d','b','g','h','m'),
+          'middle' : ('c','t','w'),
+          'ring' : ('r','n','v'),
+          'pinkie' : ('l','s','z')
         }
     }
 }
@@ -38,7 +38,7 @@ typing_map ={
 
 
 typing_row = {'qwerty': ['qwertyuiop','asdfghjkl','zxcvbnm','1234567890'],
-              'dvorak': ['','','','']
+              'dvorak': ['pyfgcrl','aoeuidhtns','qjkxbmwvz','1234567890']
              }
 
 
