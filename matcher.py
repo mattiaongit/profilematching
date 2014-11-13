@@ -54,7 +54,7 @@ for profile in list(dbprofiles):
 
 
 # Extract pairs of a specific social networks pair
-dataset = profilesPairs[('Facebook','Twitter')]
+dataset = profilesPairs[('Linkedin','Twitter')]
 dataset = [pair for pair in dataset if len(pair[0]) > 0 and len(pair[1]) > 0]
 raw_data = dataset + shuffleProfiles(dataset)
 # LABELS OF DATASET (1: positive match, 0: negative match)
