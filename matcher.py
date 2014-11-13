@@ -30,7 +30,8 @@ def shuffleProfiles(profilePair):
   return  list(zip(l1,l2))
 
 
-features_functions = [sameUsername, ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x,y : sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),eachFingerRate(layout='dvorak'), rowsRate(layout='dvorak'),lambda x,y : sameRate(x,y,granularitiesFunction=sameHand,layout='dvorak'),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger,layout='dvorak'),shannonEntropy,lcsubstring,lcs]
+features_functions = [sameUsername, ull, uucl, alphabetDistribution, eachFingerRate, rowsRate,lambda x,y : sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),lambda x,y: eachFingerRate(x,y,layout='dvorak'), lambda x,y: rowsRate(x,y,layout='dvorak'),
+lambda x,y : sameRate(x,y,granularitiesFunction=sameHand,layout='dvorak'),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger,layout='dvorak'),shannonEntropy,lcsubstring,lcs]
 
 def vectorize(pair, debug = False):
     if debug:
