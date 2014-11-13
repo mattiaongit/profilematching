@@ -35,30 +35,40 @@ lambda x,y : sameRate(x,y,granularitiesFunction=sameHand,layout='dvorak'),lambda
 
 def vectorize(pair, debug = False):
     if debug:
-        return [(f.__name__,f(pair[0],[pair[1]])) for f in features_functions]
+        return [(f.__name__,f(pair[0],pair[1])) for f in features_functions]
     else:
         features_vector = []
-        [features_vector.extend(f(pair[0],[pair[1]])) for f in features_functions]
+        [features_vector.extend(f(pair[0],pair[1])) for f in features_functions]
         return features_vector
 
-for profile in list(dbprofiles):
-  profilePairs = list(combinations(profile.items(),2))
-  for pair in profilePairs:
-    sn1 = pair[0][0].capitalize()
-    sn2 = pair[1][0].capitalize()
-    socialNetowrks.update(set((sn1,sn2)))
-    key = tuple(sorted((sn1,sn2)))
-    if key not in profilesPairs.keys():
-        profilesPairs[key] = []
-    profilesPairs[key].append((pair[0][1]['username'],pair[1][1]['username']))
+# for profile in list(dbprofiles):
+#   profilePairs = list(combinations(profile.items(),2))
+#   for pair in profilePairs:
+#     sn1 = pair[0][0].capitalize()
+#     sn2 = pair[1][0].capitalize()
+#     socialNetowrks.update(set((sn1,sn2)))
+#     key = tuple(sorted((sn1,sn2)))
+#     if key not in profilesPairs.keys():
+#         profilesPairs[key] = []
+#     profilesPairs[key].append((pair[0][1]['username'],pair[1][1]['username']))
 
 
-# Extract pairs of a specific social networks pair
-dataset = profilesPairs[('Linkedin','Twitter')]
-dataset = [pair for pair in dataset if len(pair[0]) > 0 and len(pair[1]) > 0]
-raw_data = dataset + shuffleProfiles(dataset)
-# LABELS OF DATASET (1: positive match, 0: negative match)
-# THE SHUFFLED USERNAME PAIRS IS GOING TO BE LABELLED AS 0
+# # Extract pairs of a specific social networks pair
+# dataset = profilesPairs[('Linkedin','Twitter')]
+# dataset = [pair for pair in dataset if len(pair[0]) > 0 and len(pair[1]) > 0]
+# raw_data = dataset + shuffleProfiles(dataset)
+# # LABELS OF DATASET (1: positive match, 0: negative match)
+# # THE SHUFFLED USERNAME PAIRS IS GOING TO BE LABELLED AS 0
+
+profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion']) for profile in list(dbprofiles)]
+candidates, priors = zip(*profiles)
+tmp = list(candidates)
+shuffle(tmp)
+candidate = tuple(tmp)
+shuffledProfiles = zip(candidates,priors)
+
+raw_data = profiles + shuffledProfiles
+
 targets = [1] * len(dataset) + [0] * len(dataset)
 
 data = []
@@ -80,11 +90,11 @@ tuning_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],
                     {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
 scores = ['f1', 'recall']
 
-best_estimator = SVMClf1.gridSearch(tuning_parameters, scores)
+#best_estimator = SVMClf1.gridSearch(tuning_parameters, scores)
 
 
 params = {'C':10, 'cache_size':200, 'class_weight':None, 'coef0':0.0, 'degree':3, 'gamma':0.0001, 'kernel':'linear', 'max_iter':-1, 'probability':False, 'random_state':None, 'shrinking':True, 'tol':0.001, 'verbose':False}
 
-SVMClf1.train(*best_estimator)
+SVMClf1.train(params)
 
 SVMClf1.test(output = True)

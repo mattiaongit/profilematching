@@ -42,6 +42,7 @@ class SVMClassifier:
         y_true, y_pred = self.y_test, clf.predict(self.X_test)
         print(metrics.classification_report(y_true, y_pred))
         print()
+        return clf.best_estimator_
 
   def train(self,params):
     print("training ...")
