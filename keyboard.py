@@ -16,7 +16,7 @@ typing_map ={
           'ring' : ('o','l','.'),
           'pinkie' : ('p',';')
         }
-    }
+    },
     'dvorak': {
       'left':
         {
