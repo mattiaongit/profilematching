@@ -60,7 +60,7 @@ def vectorize(pair, debug = False):
 # # LABELS OF DATASET (1: positive match, 0: negative match)
 # # THE SHUFFLED USERNAME PAIRS IS GOING TO BE LABELLED AS 0
 
-profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion']) for profile in list(dbprofiles)]
+profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion'] and len(v['username']) > 0) for profile in list(dbprofiles)]
 candidates, priors = zip(*profiles)
 tmp = list(candidates)
 shuffle(tmp)
