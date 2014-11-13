@@ -48,16 +48,16 @@ def biGrams(word):
 
 # keys is a pair of key e.g ('a','q')
 # Return boolean or the string rapresenting the hand used
-def sameHand(keys, handInfo = False):
-  lefthand,righthand = left_hand(), right_hand()
+def sameHand(keys, handInfo = False, layout = 'qwerty'):
+  lefthand,righthand = left_hand(layout), right_hand(layout)
   if not handInfo:
     return ( keys[0] in lefthand and keys[1] in lefthand ) or ( keys[0] in righthand and keys[1] in righthand )
   else:
     return ( keys[0] in lefthand and keys[1] in lefthand and 'left') or ( keys[0] in righthand and keys[1] in righthand and 'right')
 
-def sameFinger(keys):
-  if sameHand(keys):
-    samefinger = [all((keys[0] in finger, keys[1] in finger)) for finger in typing_map[sameHand(keys,True)].values()]
+def sameFinger(keys, layout = 'qwerty'):
+  if sameHand(keys, layout = layout):
+    samefinger = [all((keys[0] in finger, keys[1] in finger)) for finger in typing_map[sameHand(keys,True, layout)].values()]
     return sum(samefinger) > 0 and True or False
   else:
     return False
@@ -65,20 +65,20 @@ def sameFinger(keys):
 # The percentage of keys typed using the same (X) used for the previous key.
 # (X) depending on the granularities e.g 'Hand' or 'Finger'
 @candidatepriors
-def sameRate(username, granularitiesFunction):
+def sameRate(username, granularitiesFunction, layout = 'qwerty'):
   username = username.replace(" ","").lower()
   bigram = biGrams(username)
-  samerate = [granularitiesFunction(bg) for bg in bigram]
+  samerate = [granularitiesFunction(bg, layout = layout) for bg in bigram]
   return (len(username) == 1 and [1]) or [sum(samerate) / (len(username) -1)]
 
 
 # The percentage of keys typed using each finger order by hands order by finger (left-right/index,middle,pinkie,ring)
 
 @candidatepriors
-def eachFingerRate(username):
+def eachFingerRate(username, layout = 'qwerty'):
   to_flat = [[(finger, hand, sum([username.count(key)
-            for key in typing_map[hand][finger]])/len(username))
-            for finger in typing_map[hand]]
+            for key in typing_map[layout][hand][finger]])/len(username))
+            for finger in typing_map[layout][hand]]
             for hand in typing_map.keys()]
   ordered = sorted([rate for hand in to_flat for rate in hand], key = lambda tup: (tup[0],tup[1]))
   return [el[2] for el in ordered]
@@ -86,8 +86,8 @@ def eachFingerRate(username):
 
 #The percentage of keys pressed on rows: Top Row, Home Row, Bottom Row, and Number Row
 @candidatepriors
-def rowsRate(username):
-  return [sum([c in row for c in username]) for row in typing_row]
+def rowsRate(username, layout = 'qwerty' ):
+  return [sum([c in row for c in username]) for row in typing_row[layout]]
 
 
 
