@@ -67,7 +67,7 @@ class SVMClassifier:
     if output:
       print("prec: {0}, rec: {1}, f1: {2}".format(precision,recall,f1))
 
-    fpr, tpr, tresholds = metrics.roc_curve(self.y_test,self.y_pred, pos_label = 1)
+    fpr, tpr, tresholds = metrics.roc_curve(self.y_test,y_pred, pos_label = 1)
     auc = metrics.auc(fpr,tpr)
     prit("AUC score")
     print(auc)
