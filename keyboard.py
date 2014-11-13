@@ -1,7 +1,7 @@
 # KEYBOARD CONFIGURATIONS
 
 typing_map ={
-    'querty': {
+    'qwerty': {
       'left':
         {
           'pinkie' : ('q', 'a', 'z'),
