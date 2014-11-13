@@ -79,7 +79,7 @@ def eachFingerRate(username, layout = 'qwerty'):
   to_flat = [[(finger, hand, sum([username.count(key)
             for key in typing_map[layout][hand][finger]])/len(username))
             for finger in typing_map[layout][hand]]
-            for hand in typing_map.keys()]
+            for hand in typing_map[layout].keys()]
   ordered = sorted([rate for hand in to_flat for rate in hand], key = lambda tup: (tup[0],tup[1]))
   return [el[2] for el in ordered]
 
