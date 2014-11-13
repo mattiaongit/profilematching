@@ -69,7 +69,7 @@ shuffledProfiles = zip(candidates,priors)
 
 raw_data = profiles + shuffledProfiles
 
-targets = [1] * len(dataset) + [0] * len(dataset)
+targets = [1] * len(profiles) + [0] * len(profiles)
 
 data = []
 # BUILDING FEATURES INPUT VECTOR
