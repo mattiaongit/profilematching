@@ -7,7 +7,6 @@ from SVMClassifier import *
 import sklearn.preprocessing
 
 import pymongo
-
 import pdb
 
 
@@ -60,6 +59,8 @@ def vectorize(pair, debug = False):
 # # LABELS OF DATASET (1: positive match, 0: negative match)
 # # THE SHUFFLED USERNAME PAIRS IS GOING TO BE LABELLED AS 0
 
+print('Prerocessing data')
+
 profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion' and len(v['username']) > 0]) for profile in list(dbprofiles)]
 profiles = [x for x in profiles if len(x[1]) > 0]
 candidates, priors = zip(*profiles)
@@ -70,6 +71,8 @@ shuffledProfiles = zip(candidates,priors)
 
 raw_data = profiles + shuffledProfiles
 
+print("Raw data ready to extract features, n items:{0}".format(len(raw_data)))
+
 targets = [1] * len(profiles) + [0] * len(profiles)
 
 data = []
@@ -77,6 +80,7 @@ data = []
 for sample in raw_data:
   data.append(vectorize(sample))
 
+print('Features extracted, Run Classifier ...')
 
 SVMClf1 = SVMClassifier(data, targets)
 
