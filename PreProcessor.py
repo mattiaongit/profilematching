@@ -60,7 +60,7 @@ class PreProcessor():
 		self.selected_features = self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['endogenous']
 
 		for sample in self.ppdata:
-			self.data.append(vectorize(sample))
+			self.data.append(self.vectorize(sample))
 
 	def datatargets(self):
 		self.preprocess()
