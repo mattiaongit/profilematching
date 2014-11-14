@@ -65,8 +65,10 @@ class SVMClassifier:
     precision = metrics.precision_score(self.y_test,y_pred)
     recall = metrics.recall_score(self.y_test,y_pred)
     f1 = 2 * ( (precision * recall) / (precision + recall) )
+    acc = metrics.accuracy_score(self.y_test,y_pred)
+
     if output:
-      print("prec: {0}, rec: {1}, f1: {2}".format(precision,recall,f1))
+      print("accuracy:{0}, prec: {1}, rec: {2}, f1: {3}".format(acc,precision,recall,f1))
 
     fpr, tpr, tresholds = metrics.roc_curve(self.y_test,y_pred, pos_label = 1)
     auc = metrics.auc(fpr,tpr)
