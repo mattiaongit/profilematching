@@ -3,7 +3,7 @@
 
 import dataset
 from features import *
-from random import shuffle
+from random import shuffle, sample
 from itertools import combinations
 
 
@@ -36,7 +36,7 @@ class PreProcessor():
 	def preprocess(self):
 		print('Preprocessing data')
 		if self.priors == 0:
-			profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion' and len(v['username']) > 0 and k in ('Facebook','Google+','Twitter','LinkedIn')]) for profile in list(self.rawdata)[:4000]]
+			profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion' and len(v['username']) > 0 and k in ('Facebook','Google+','Twitter','LinkedIn')]) for profile in sample(list(self.rawdata),1000)]
 			profiles = [x for x in profiles if len(x[1]) > 0]
 			candidates, priors = zip(*profiles)
 			tmp = list(candidates)
