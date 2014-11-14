@@ -1,4 +1,4 @@
-from sklearn import cross_validation, grid_search, metrics, preprocessing, svm
+from sklearn import cross_validation, grid_search, metrics, preprocessing, svm, linear_model
 
 
 class SVMClassifier:
@@ -7,10 +7,10 @@ class SVMClassifier:
     #Filling instance variables with datafunction
     self.data = data
     self.targets = targets
-    self.X_train, self.X_test, self.y_train, self.y_test = [],[],[],[]
+    self.X_train, self.X_test, self.y_train, self.y_test = [None] * 4
 
     # Classifier
-    self.clf = []
+    self.clf = None
 
 
   def splitDataTrainingTest(self,fraction):
@@ -46,7 +46,7 @@ class SVMClassifier:
 
   def train(self,params):
     print("training ...")
-    self.clf = svm.SVC(**params)
+    self.clf = linear_model.PassiveAggressiveClassifier()
     self.clf.fit(self.X_train,self.y_train)
     print("trained, classifer internal status:")
     print("Features vector length {0}".format(len(self.clf.coef_[0])))
@@ -56,6 +56,7 @@ class SVMClassifier:
   def test(self, output = False):
     y_pred = []
     #TEST
+    #TODO to list comprehension
     print("predictions ...")
     for t in self.X_test:
       y_pred.append(self.clf.predict(t))

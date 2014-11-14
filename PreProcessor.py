@@ -65,4 +65,4 @@ class PreProcessor():
 	def datatargets(self):
 		self.preprocess()
 		self.vectorizeData()
-		return {'data': self.data, 'targets': self.targets}
+		return self.data, self.targets
