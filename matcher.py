@@ -80,7 +80,7 @@ data = []
 for sample in raw_data:
   data.append(vectorize(sample))
 
-print('Features extracted, Run Classifier ...')
+print('Features extracted, Run Classifier...')
 
 SVMClf1 = SVMClassifier(data, targets)
 
