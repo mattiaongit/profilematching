@@ -65,6 +65,7 @@ class PreProcessor():
 			counter += 1
 			self.data.append(self.vectorize(sample))
 			if counter % 1000 == 0:
+				print(sample)
 				print(self.vectorize(sample))
 
 	def datatargets(self):
