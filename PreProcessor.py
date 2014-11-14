@@ -37,7 +37,7 @@ class PreProcessor():
 		print('Preprocessing data')
 		if self.priors == 0:
 			profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion' and len(v['username']) > 0]) for profile in list(self.rawdata)]
-			profiles = [x for x in profiles if len(x[1]) > 0]
+			profiles = [x for x in profiles if len(x[1]) > 0] # filter(len, profiles)
 			candidates, priors = zip(*profiles)
 			tmp = list(candidates)
 			shuffle(tmp)
@@ -59,8 +59,12 @@ class PreProcessor():
 	def vectorizeData(self,timer = False):
 		self.selected_features = self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['endogenous']
 
+		counter = 0
+		#self.data = map(self.vectorize, sample)
 		for sample in self.ppdata:
 			self.data.append(self.vectorize(sample))
+			if counter % 1000 == 0:
+				print(self.vectorize(sample))
 
 	def datatargets(self):
 		self.preprocess()
