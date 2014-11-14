@@ -62,6 +62,7 @@ class PreProcessor():
 		counter = 0
 		#self.data = map(self.vectorize, sample)
 		for sample in self.ppdata:
+			counter += 1
 			self.data.append(self.vectorize(sample))
 			if counter % 1000 == 0:
 				print(self.vectorize(sample))
