@@ -61,7 +61,7 @@ class PreProcessor():
 
 
 	def vectorizeData(self,timer = False, debug = False):
-		self.selected_features = self.features['humanlimitations'] + self.features['distances']
+		self.selected_features = self.features['distances']
 
 		counter = 0
 		#self.data = map(self.vectorize, sample)
