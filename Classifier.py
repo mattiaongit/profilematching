@@ -26,6 +26,7 @@ class Classifier:
 
 
   def gridSearch(self,tuning_parameters,scores):
+    print("dioporco{0}".format(scores))
     for score in scores:
         print("# Tuning hyper-parameters for %s \r\n" % score)
         clf = grid_search.GridSearchCV(linear_model.__dict__[self.model](), tuning_parameters, scoring=score)

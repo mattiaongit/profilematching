@@ -21,10 +21,12 @@ tuning_parameters = {
     'alpha': [0.001, 0.0001, 0.00001, 0.000001]
 }
 
-scores = ['f1', 'recall']
+scores = ['recall', 'f1','roc_auc']
 
 
 best_params = clf.gridSearch(tuning_parameters, scores)
+
+print(best_params)
 
 clf.train(best_params)
 
