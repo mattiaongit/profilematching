@@ -10,9 +10,6 @@ alphabet = string.ascii_lowercase
 def candidatepriors(f):
   @wraps(f)
   def _f(*args,**kwargs):
-    print args[0]
-    print args[1]
-    print kwargs
     output = []
     output.extend(f(args[0],**kwargs))
 
