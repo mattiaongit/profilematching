@@ -1,4 +1,4 @@
-from SVMClassifier import *
+from Classifier import *
 from PreProcessor import *
 
 import sklearn.preprocessing
@@ -7,12 +7,12 @@ import pdb
 pp = PreProcessor(0)
 data, targets = pp.datatargets()
 
-SVMClf1 = SVMClassifier(data, targets)
+clf = Classifier('SGDClassifier',data, targets)
 
-SVMClf1.splitDataTrainingTest(10)
+clf.splitDataTrainingTest(10)
 
 # scaler from sklearn, es: MinMaxScaler, StandardScaler
-SVMClf1.normalizeData(sklearn.preprocessing.StandardScaler)
+clf.normalizeData(sklearn.preprocessing.StandardScaler)
 
 
 tuning_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],
@@ -25,6 +25,6 @@ scores = ['f1', 'recall']
 
 params = {'C':100, 'cache_size':200, 'class_weight':None, 'coef0':0.0, 'degree':3, 'gamma':0.0001, 'kernel':'linear', 'max_iter':-1, 'probability':False, 'random_state':None, 'shrinking':True, 'tol':0.001, 'verbose':False}
 
-SVMClf1.train(params)
+clf.train(params)
 
-SVMClf1.test(output = True)
+clf.test(output = True)
