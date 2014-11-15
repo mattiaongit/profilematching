@@ -16,7 +16,14 @@ def splitParams(f):
         return f(normalize(args[0][0]),normalize(args[0][1]))
     return _f
 
-@splitParams
+def distribute(f):
+    def _f(*args):
+        candidate, priors = normalize(args[0]), args[1]
+        return distribution([f(candidate,normalize(prior)) for prior in priors])
+    return _f
+
+
+@distribute
 def levenshtein(source, target):
     if len(source) < len(target):
         source, target = target, source
@@ -52,13 +59,13 @@ def levenshtein(source, target):
 
         previous_row = current_row
 
-    return [previous_row[-1]]
+    return previous_row[-1]
 
-@splitParams
+@distribute
 def jaccard(s1,s2):
     ss1 = set(s1)
     ss2 = set(s2)
     if len(ss1.union(ss2)) == 0:
       return 0
     else:
-      return [1 - len(ss1.intersection(ss2)) / len(ss1.union(ss2))]
+      return 1 - len(ss1.intersection(ss2)) / len(ss1.union(ss2))
