@@ -36,7 +36,7 @@ class PreProcessor():
 	def preprocess(self):
 		print('Preprocessing data')
 		if self.priors == 0:
-			profiles =[(profile['Google+']['username'],[v['username'] for k,v in profile.items() if k == 'Youtube' and len(v['username']) > 0]) for profile in list(self.rawdata)]
+			profiles =[(profile['Google+']['username'],[v['username'] for k,v in profile.items() if k == 'Youtube' and len(v['username']) > 0]) for profile in list(self.rawdata) if "Google+" in profile.keys()]
 			profiles = [x for x in profiles if len(x[1]) > 0] # filter(len, profiles)
 			candidates, priors = zip(*profiles)
 			tmp = list(candidates)
