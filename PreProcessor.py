@@ -46,7 +46,7 @@ class PreProcessor():
 			profiles = []
 			for profile in list(self.rawdata):
 				for cKey,cUsername in profile.items():
-					profiles.append((cUsername, [pUsername for pKey,pUsername if cKey != pKey]))
+					profiles.append((cUsername, [pUsername for pKey,pUsername in profile.items() if cKey != pKey]))
 
 			candidates, priors = zip(*profiles)
 			tmp = list(candidates)
