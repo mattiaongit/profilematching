@@ -25,10 +25,10 @@ class Classifier:
     scaler.fit_transform(self.X_test)
 
 
-  def gridSearch(self,tuning_parameters, scores):
+  def gridSearch(self,tuning_parameters,scores):
     for score in scores:
         print("# Tuning hyper-parameters for %s \r\n" % score)
-        clf = grid_search.GridSearchCV(svm.SVC(C=1), tuning_parameters, cv=5, scoring=score)
+        clf = grid_search.GridSearchCV(linear_model.__dict__[self.model](), tuning_parameters, scoring=score)
         clf.fit(self.X_train, self.y_train)
         print("Best parameters set found on development set:\r\n")
         print(clf.best_estimator_)
@@ -43,7 +43,7 @@ class Classifier:
         y_true, y_pred = self.y_test, clf.predict(self.X_test)
         print(metrics.classification_report(y_true, y_pred))
         print()
-        return clf.best_estimator_
+        return clf.best_params_
 
   def train(self,params):
     print("training ...")

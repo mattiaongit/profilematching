@@ -15,16 +15,18 @@ clf.splitDataTrainingTest(10)
 clf.normalizeData(sklearn.preprocessing.StandardScaler)
 
 
-tuning_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],
-                     'C': [1, 10, 100, 1000]},
-                    {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
+tuning_parameters = {
+    'seed': [0],
+    'loss': ('log', 'hinge'),
+    'penalty': ['l1', 'l2', 'elasticnet'],
+    'alpha': [0.001, 0.0001, 0.00001, 0.000001]
+}
+
 scores = ['f1', 'recall']
 
-#best_estimator = SVMClf1.gridSearch(tuning_parameters, scores)
 
+best_params = clf.gridSearch(tuning_parameters, scores)
 
-params = {'C':100, 'cache_size':200, 'class_weight':None, 'coef0':0.0, 'degree':3, 'gamma':0.0001, 'kernel':'linear', 'max_iter':-1, 'probability':False, 'random_state':None, 'shrinking':True, 'tol':0.001, 'verbose':False}
-
-clf.train(params)
+clf.train(best_params)
 
 clf.test(output = True)
