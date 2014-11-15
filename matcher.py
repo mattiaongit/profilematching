@@ -16,7 +16,6 @@ clf.normalizeData(sklearn.preprocessing.StandardScaler)
 
 
 tuning_parameters = {
-    'seed': [0],
     'loss': ('log', 'hinge'),
     'penalty': ['l1', 'l2', 'elasticnet'],
     'alpha': [0.001, 0.0001, 0.00001, 0.000001]
