@@ -38,6 +38,7 @@ class PreProcessor():
 		if self.priors == 0:
 			profiles =[(profile['Google+']['username'],[v['username'] for k,v in profile.items() if k == 'Youtube' and len(v['username']) > 0]) for profile in list(self.rawdata) if "Google+" in profile.keys()]
 			profiles = [x for x in profiles if len(x[1]) > 0 and len(x[0]) > 0 ] # filter(len, profiles)
+			print(profiles)
 			candidates, priors = zip(*profiles)
 			tmp = list(candidates)
 			shuffle(tmp)
