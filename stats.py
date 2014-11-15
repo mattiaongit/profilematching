@@ -15,8 +15,6 @@ else:
 def distribution(v):
   v = list(v) # if v is a tuple
   if len(v) < 2:
-    print "distribution fail"
-    print v
     v.append(v[0])
     #return [v[0]]
   return [stf(v) for stf in stats_functions]
