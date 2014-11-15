@@ -43,7 +43,7 @@ class Classifier:
         print("The scores are computed on the full evaluation set.\r\n")
         y_true, y_pred = self.y_test, clf.predict(self.X_test)
         print(metrics.classification_report(y_true, y_pred))
-        bests[best_score_] = clf.best_params_
+        bests[clf.best_score_] = clf.best_params_
     return bests[max(bests.keys())]
 
   def train(self, hyperparams = {}):
