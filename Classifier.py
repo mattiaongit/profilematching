@@ -3,15 +3,15 @@ from sklearn import cross_validation, grid_search, metrics, preprocessing, svm, 
 
 class Classifier:
 
-  def __init__(self, learning_model, data, targets, hyperparams = {}):
+  def __init__(self, learning_model, data, targets):
     self.model = learning_model
-    self.hparams = hyperparams
+    self.hparams = None
 
     self.data = data
     self.targets = targets
     self.X_train, self.X_test, self.y_train, self.y_test = [None] * 4
 
-    self.clf = linear_model.__dict__[self.model](**self.hparams)
+    self.clf = None
 
 
   def splitDataTrainingTest(self,fraction):
@@ -45,8 +45,14 @@ class Classifier:
         print()
         return clf.best_params_
 
-  def train(self,params):
+  def train(self, hyperparams = {}):
     print("training ...")
+    self.hparams = hyperparams
+    self.clf = linear_model.__dict__[self.model](**self.hparams)
+
+    print("Classifier model {0}".format(self.model))
+    print("With hyperparms\r\n: {0}".format(self.hparams))
+
     self.clf.fit(self.X_train,self.y_train)
     print("trained, classifer internal status:")
     print("Features vector length {0}".format(len(self.clf.coef_[0])))
