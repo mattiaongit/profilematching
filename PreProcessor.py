@@ -3,6 +3,7 @@
 
 import dataset
 from features import *
+from distances import *
 from random import shuffle, sample
 from itertools import combinations
 
@@ -24,7 +25,8 @@ class PreProcessor():
 				'qwerty': [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),eachFingerRate,rowsRate],
 				'dvorak': [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand,layout='dvorak'),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger,layout='dvorak'),lambda x,y: eachFingerRate(x,y,layout='dvorak'), lambda x,y: rowsRate(x,y,layout='dvorak')],
 				},
-			'endogenous': [alphabetDistribution,shannonEntropy,lcsubstring,lcs]
+			'endogenous': [alphabetDistribution,shannonEntropy,lcsubstring,lcs],
+			'distances' : [levenshtein, jaccard]
 		}
 
 		self.selected_features = []
@@ -59,7 +61,7 @@ class PreProcessor():
 
 
 	def vectorizeData(self,timer = False, debug = False):
-		self.selected_features = self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['exogenous']['dvorak'] + self.features['endogenous']
+		self.selected_features = self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['exogenous']['dvorak'] + self.features['endogenous'] + self.features['distances']
 
 		counter = 0
 		#self.data = map(self.vectorize, sample)

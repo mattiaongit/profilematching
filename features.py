@@ -11,7 +11,8 @@ def candidatepriors(f):
   @wraps(f)
   def _f(*args,**kwargs):
     output = []
-    output.extend(f(args[0],**kwargs))
+    candidate = args[0]
+    output.extend(f(candidate,**kwargs))
 
     priors_data = []
     priors = args[1]
