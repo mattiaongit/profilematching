@@ -41,12 +41,10 @@ class PreProcessor():
 			profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion' and len(v['username']) > 0]) for profile in list(self.rawdata)]
 			profiles = [x for x in profiles if len(x[1]) > 0 and len(x[0]) > 0 ] # filter(len, profiles)
 			candidates, priors = zip(*profiles)
-			pdb.set_trace()
 			tmp = list(candidates)
 			shuffle(tmp)
-			candidate = tuple(tmp)
+			candidates = tuple(tmp)
 			shuffledProfiles = zip(candidates,priors)
-			print shuffledProfiles
 			self.ppdata = profiles + shuffledProfiles
 			self.targets = [1] * len(profiles) + [0] * len(profiles)
 			print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))

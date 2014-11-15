@@ -9,7 +9,7 @@ data, targets = pp.datatargets()
 
 SVMClf1 = SVMClassifier(data, targets)
 
-SVMClf1.splitDataTrainingTest(10)
+SVMClf1.splitDataTrainingTest(8)
 
 # scaler from sklearn, es: MinMaxScaler, StandardScaler
 SVMClf1.normalizeData(sklearn.preprocessing.StandardScaler)
