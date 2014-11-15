@@ -40,8 +40,8 @@ class PreProcessor():
 	def preprocess(self):
 		print('Preprocessing data')
 		if self.priors == 0:
-			profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion' and k in ("Facebook","Twitter","LinkedIn","Pinterest","Instagram","Google+") and len(v['username']) > 0]) for profile in list(self.rawdata)]
-			profiles = [x for x in profiles if len(x[1]) > 1 and len(x[0]) > 0 ] # filter(len, profiles)
+			profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion' and len(v['username']) > 0]) for profile in list(self.rawdata)]
+			profiles = [x for x in profiles if len(x[1]) > 2 and len(x[0]) > 0 ] # filter(len, profiles)
 			candidates, priors = zip(*profiles)
 			tmp = list(candidates)
 			shuffle(tmp)
