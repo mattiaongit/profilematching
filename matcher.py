@@ -7,7 +7,7 @@ import pdb
 pp = PreProcessor(0)
 data, targets = pp.datatargets()
 
-clf = Classifier('SGDClassifier',data, targets)
+clf = Classifier('PassiveAggressiveClassifier',data, targets)
 
 clf.splitDataTrainingTest(10)
 
