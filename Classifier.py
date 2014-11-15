@@ -26,7 +26,7 @@ class Classifier:
 
 
   def gridSearch(self,tuning_parameters,scores):
-    print("dioporco{0}".format(scores))
+    bests = {}
     for score in scores:
         print("# Tuning hyper-parameters for %s \r\n" % score)
         clf = grid_search.GridSearchCV(linear_model.__dict__[self.model](), tuning_parameters, scoring=score)
@@ -43,8 +43,8 @@ class Classifier:
         print("The scores are computed on the full evaluation set.\r\n")
         y_true, y_pred = self.y_test, clf.predict(self.X_test)
         print(metrics.classification_report(y_true, y_pred))
-        print()
-        return clf.best_params_
+        bests[best_score_] = clf.best_params_
+    return bests[max(bests.keys())]
 
   def train(self, hyperparams = {}):
     print("training ...")
