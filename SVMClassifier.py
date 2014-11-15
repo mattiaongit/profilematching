@@ -46,7 +46,7 @@ class SVMClassifier:
 
   def train(self,params):
     print("training ...")
-    self.clf = linear_model.SGDClassifier()
+    self.clf = linear_model.Perceptron()
     #self.clf = svm.SVC(**params)
     self.clf.fit(self.X_train,self.y_train)
     print("trained, classifer internal status:")
