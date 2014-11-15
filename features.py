@@ -11,10 +11,10 @@ def candidatepriors(f):
   @wraps(f)
   def _f(*args,**kwargs):
     output = []
-    output.extend(f(args[0][0],**kwargs))
+    output.extend(f(args[0],**kwargs))
 
     priors_data = []
-    priors = args[0][1]
+    priors = args[1]
     for p in priors:
         priors_data.append(f(p,**kwargs))
     column_data = zip(*priors_data)
