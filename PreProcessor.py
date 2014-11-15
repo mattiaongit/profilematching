@@ -58,7 +58,7 @@ class PreProcessor():
 			return features_vector
 
 
-	def vectorizeData(self,timer = False):
+	def vectorizeData(self,timer = False, debug = False):
 		self.selected_features = self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['exogenous']['dvorak'] + self.features['endogenous']
 
 		counter = 0
@@ -66,7 +66,7 @@ class PreProcessor():
 		for sample in self.ppdata:
 			counter += 1
 			self.data.append(self.vectorize(sample))
-			if counter % 1000 == 0:
+			if debug and counter % 1000 == 0:
 				print(sample)
 				print(self.vectorize(sample,debug = True))
 

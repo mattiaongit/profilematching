@@ -11,7 +11,7 @@ class Classifier:
     self.targets = targets
     self.X_train, self.X_test, self.y_train, self.y_test = [None] * 4
 
-    self.clf = linear_model.__dict__[self.model](**hparams)
+    self.clf = linear_model.__dict__[self.model](**self.hparams)
 
 
   def splitDataTrainingTest(self,fraction):
