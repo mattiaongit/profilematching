@@ -43,6 +43,7 @@ class PreProcessor():
 			shuffle(tmp)
 			candidate = tuple(tmp)
 			shuffledProfiles = zip(candidates,priors)
+			print shuffledProfiles
 			self.ppdata = profiles + shuffledProfiles
 			self.targets = [1] * len(profiles) + [0] * len(profiles)
 			print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
