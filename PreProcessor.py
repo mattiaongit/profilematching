@@ -61,8 +61,8 @@ class PreProcessor():
 
 
 	def vectorizeData(self,timer = False, debug = False):
-		self.selected_features = self.features['distances']
-
+		self.selected_features = self.features['distances'] + self.features['endogenous']
+		#self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['exogenous']['dvorak'] + self.features['endogenous'] +
 		counter = 0
 		#self.data = map(self.vectorize, sample)
 		for sample in self.ppdata:
