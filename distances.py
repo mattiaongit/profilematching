@@ -1,5 +1,6 @@
 from __future__ import division
 from functools import wraps
+import stats
 import numpy as np
 
 
@@ -19,7 +20,7 @@ def splitParams(f):
 def distribute(f):
     def _f(*args):
         candidate, priors = normalize(args[0]), args[1]
-        return distribution([f(candidate,normalize(prior)) for prior in priors])
+        return stats.distribution([f(candidate,normalize(prior)) for prior in priors])
     return _f
 
 
