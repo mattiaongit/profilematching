@@ -6,12 +6,13 @@ class Classifier:
   def __init__(self, learning_model, data, targets):
     self.model = learning_model
     self.hparams = None
+    self.clf = None
 
     self.data = data
     self.targets = targets
     self.X_train, self.X_test, self.y_train, self.y_test = [None] * 4
 
-    self.clf = None
+
 
 
   def splitDataTrainingTest(self,fraction):
@@ -60,7 +61,7 @@ class Classifier:
     print(self.clf.coef_)
 
 
-  def test(self, output = False):
+  def test(self):
     y_pred = []
     #TEST
     #TODO to list comprehension
@@ -75,13 +76,6 @@ class Classifier:
     f1 = 2 * ( (precision * recall) / (precision + recall) )
     acc = metrics.accuracy_score(self.y_test,y_pred)
 
-    if output:
-      print("accuracy:{0}, prec: {1}, rec: {2}, f1: {3}".format(acc,precision,recall,f1))
-
     fpr, tpr, tresholds = metrics.roc_curve(self.y_test,y_pred, pos_label = 1)
     auc = metrics.auc(fpr,tpr)
-    print("AUC score")
-    print(auc)
-
-  def score(self,scoring, tuned_parameters):
-    pass
+    print("accuracy: {0}, prec: {1}, rec: {2}, f1: {3}, AUC: {4}".format(acc,precision,recall,f1,auc))

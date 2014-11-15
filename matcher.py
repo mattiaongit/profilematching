@@ -30,4 +30,4 @@ print(best_params)
 
 clf.train(best_params)
 
-clf.test(output = True)
+clf.test()
