@@ -14,7 +14,7 @@ def candidatepriors(f):
     output.extend(f(args[0][0],**kwargs))
 
     priors_data = []
-    priors = args[1]
+    priors = args[0][1]
     for p in priors:
         priors_data.append(f(p,**kwargs))
     column_data = zip(*priors_data)
