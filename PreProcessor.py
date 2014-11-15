@@ -48,6 +48,8 @@ class PreProcessor():
 				for cKey,cUsername in profile.items():
 					profiles.append((cUsername, [pUsername for pKey,pUsername in profile.items() if cKey != pKey]))
 
+
+			print(profiles[:2])
 			candidates, priors = zip(*profiles)
 			tmp = list(candidates)
 			shuffle(tmp)
