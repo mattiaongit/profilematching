@@ -14,21 +14,21 @@ import pdb
 class PreProcessor():
 
 	# priors 0 returns all possible priors for each candidate
-	def __init__(self, filterCandidate = False, filterPriors = False, minPriors = 1):
+	def __init__(self, filterCandidate = False, filterPriors = False, minPriors = 1, filterFeatures = False):
 		self.rawdata = dataset.raw_data()
 
 		self.filterCandidate = filterCandidate
 		self.filterPriors = filterPriors
 		self.minPriors = minPriors
 
+        self.filterFeatures = filterFeatures
+
 		self.features = {
-			'humanlimitations': [sameUsername, ull, uucl],
-			'exogenous': {
-				'qwerty': [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),eachFingerRate,rowsRate],
-				'dvorak': [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand,layout='dvorak'),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger,layout='dvorak'),lambda x,y: eachFingerRate(x,y,layout='dvorak'), lambda x,y: rowsRate(x,y,layout='dvorak')],
-				},
+			'humanlimitations':  [sameUsername, ull, uucl],
+			'exogenousqwerty':   [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),eachFingerRate,rowsRate],
+            'exogenousdvorak':   [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand,layout='dvorak'),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger,layout='dvorak'),lambda x,y: eachFingerRate(x,y,layout='dvorak'), lambda x,y: rowsRate(x,y,layout='dvorak')],
 			'endogenous': [alphabetDistribution,shannonEntropy,lcsubstring,lcs],
-			'distances' : [jaccard]
+			'distances' : [levenshtein, jaccard]
 		}
 
 		self.selected_features = []
@@ -44,6 +44,7 @@ class PreProcessor():
 		print('Candidate filter: {0}'.format(self.filterCandidate))
 		print('Priors filter: {0}'.format(self.filterPriors))
 		print('Min number of priors: {0}'.format(self.minPriors))
+        print('Features used: {0}:'.format((not self.filterFeatures and 'All') or self.filterFeature))
 		profiles = []
 		for profile in list(self.rawdata):
 			for cKey,cUsername in profile.items():
@@ -61,6 +62,10 @@ class PreProcessor():
 		print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
 
 	def vectorize(self, pair, debug = False):
+        for feature in self.features.keys():
+            if not self.filterFeatures or feature in self.filterFeatures:
+                self.selected_features.extend(self.features[feature])
+
 		if debug:
 			return [(f.__name__,f(pair[0],pair[1])) for f in self.selected_features]
 		else:
@@ -70,9 +75,7 @@ class PreProcessor():
 
 
 	def vectorizeData(self,timer = False, debug = False):
-		self.selected_features = self.features['distances'] #+ self.features['humanlimitations']
-		#self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['exogenous']['dvorak'] + self.features['endogenous'] +
-		counter = 0
+        counter = 0
 		#self.data = map(self.vectorize, sample)
 		for sample in self.ppdata:
 			counter += 1

@@ -7,7 +7,9 @@ import pdb
 candidateClasses = ['Facebook','Google+','LinkedIn','Twitter']
 priorsClasses = ['Facebook','Google+','LinkedIn','Twitter']
 
-pp = PreProcessor(minPriors=3)
+filterFeatures = ['distances','humanlimitations']
+
+pp = PreProcessor(minPriors=2, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
 
 clf = Classifier('SGDClassifier',data, targets)
