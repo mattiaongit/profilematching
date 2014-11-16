@@ -45,12 +45,12 @@ class PreProcessor():
 		print('Min number of priors: {0}'.format(self.minPriors))
         print('Features used: {0}:'.format((not self.filterFeatures and 'All') or self.filterFeature))
         profiles = []
-		for profile in list(self.rawdata):
-			for cKey,cUsername in profile.items():
-				if not self.filterCandidate or cKey in self.filterCandidate:
-					profiles.append((cUsername['username'], [pUsername['username'] for pKey,pUsername in profile.items() if cKey != pKey and ( not self.filterPriors or pKey in self.filterPriors)]))
+        for profile in list(self.rawdata):
+            for cKey,cUsername in profile.items():
+                if not self.filterCandidate or cKey in self.filterCandidate:
+                    profiles.append((cUsername['username'], [pUsername['username'] for pKey,pUsername in profile.items() if cKey != pKey and ( not self.filterPriors or pKey in self.filterPriors)]))
 
-		profiles = [x for x in profiles if len(x[1]) >= self.minPriors and len(x[0]) > 0 and all([len(u) > 0 for u in x[1]])]
+        profiles = [x for x in profiles if len(x[1]) >= self.minPriors and len(x[0]) > 0 and all([len(u) > 0 for u in x[1]])]
 		candidates, priors = zip(*profiles)
 		tmp = list(candidates)
 		shuffle(tmp)
