@@ -7,7 +7,7 @@ import pdb
 candidateClasses = ['Facebook','Google+','LinkedIn','Twitter']
 priorsClasses = ['Facebook','Google+','LinkedIn','Twitter']
 
-filterFeatures = ['distances','humanlimitations','distances']
+filterFeatures = ['distances','humanlimitations','endogenous']
 
 pp = PreProcessor(minPriors=2, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
