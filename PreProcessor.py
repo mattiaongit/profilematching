@@ -14,7 +14,7 @@ import pdb
 class PreProcessor():
 
 	# priors 0 returns all possible priors for each candidate
-	def __init__(self, priors = 0, filterCandidate = False, filterPriors = False, minPriors = 1):
+	def __init__(self, filterCandidate = False, filterPriors = False, minPriors = 1):
 		self.priors = priors
 		self.rawdata = dataset.raw_data()
 
@@ -41,26 +41,26 @@ class PreProcessor():
 
 
 	def preprocess(self):
-		print('Preprocessing data')
-		if self.priors == 0:
-			#profiles =[(profile['Alternion']['username'],[v['username'] for k,v in profile.items() if k != 'Alternion' and len(v['username']) > 0]) for profile in list(self.rawdata)]
-			#profiles = [x for x in profiles if len(x[1]) > 0 and len(x[0]) > 0 ] # filter(len, profiles)
+		print('Preprocessing data, as requested:')
+		print('Candidate filter: {0}'.format(self.filterCandidate))
+		print('Priors filter: {0}'.format(self.filterPriors))
+		print('Min number of priors: {0}'.format(self.minPriors))
+		
+		profiles = []
+		for profile in list(self.rawdata):
+			for cKey,cUsername in profile.items():
+				if not self.filterCandidate or cKey in self.filterCandidate:
+					profiles.append((cUsername['username'], [pUsername['username'] for pKey,pUsername in profile.items() if cKey != pKey and ( not self.filterPriors or pKey in self.filterPriors)]))
 
-			profiles = []
-			for profile in list(self.rawdata):
-				for cKey,cUsername in profile.items():
-					if not self.filterCandidate or cKey in self.filterCandidate:
-						profiles.append((cUsername['username'], [pUsername['username'] for pKey,pUsername in profile.items() if cKey != pKey and ( not self.filterPriors or pKey in self.filterPriors)]))
-
-			profiles = [x for x in profiles if len(x[1]) >= self.minPriors and len(x[0]) > 0 and all([len(u) > 0 for u in x[1]])]
-			candidates, priors = zip(*profiles)
-			tmp = list(candidates)
-			shuffle(tmp)
-			candidates = tuple(tmp)
-			shuffledProfiles = zip(candidates,priors)
-			self.ppdata = profiles + shuffledProfiles
-			self.targets = [1] * len(profiles) + [0] * len(profiles)
-			print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
+		profiles = [x for x in profiles if len(x[1]) >= self.minPriors and len(x[0]) > 0 and all([len(u) > 0 for u in x[1]])]
+		candidates, priors = zip(*profiles)
+		tmp = list(candidates)
+		shuffle(tmp)
+		candidates = tuple(tmp)
+		shuffledProfiles = zip(candidates,priors)
+		self.ppdata = profiles + shuffledProfiles
+		self.targets = [1] * len(profiles) + [0] * len(profiles)
+		print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
 
 	def vectorize(self, pair, debug = False):
 		if debug:
@@ -72,7 +72,7 @@ class PreProcessor():
 
 
 	def vectorizeData(self,timer = False, debug = False):
-		self.selected_features = self.features['distances'] + self.features['endogenous']
+		self.selected_features = self.features['distances'] + self.features['humanlimitations']
 		#self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['exogenous']['dvorak'] + self.features['endogenous'] +
 		counter = 0
 		#self.data = map(self.vectorize, sample)
