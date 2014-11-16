@@ -51,14 +51,14 @@ class PreProcessor():
                     profiles.append((cUsername['username'], [pUsername['username'] for pKey,pUsername in profile.items() if cKey != pKey and ( not self.filterPriors or pKey in self.filterPriors)]))
 
         profiles = [x for x in profiles if len(x[1]) >= self.minPriors and len(x[0]) > 0 and all([len(u) > 0 for u in x[1]])]
-		candidates, priors = zip(*profiles)
-		tmp = list(candidates)
-		shuffle(tmp)
-		candidates = tuple(tmp)
-		shuffledProfiles = zip(candidates,priors)
-		self.ppdata = profiles + shuffledProfiles
-		self.targets = [1] * len(profiles) + [0] * len(profiles)
-		print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
+        candidates, priors = zip(*profiles)
+        tmp = list(candidates)
+        shuffle(tmp)
+        candidates = tuple(tmp)
+        shuffledProfiles = zip(candidates,priors)
+        self.ppdata = profiles + shuffledProfiles
+        self.targets = [1] * len(profiles) + [0] * len(profiles)
+        print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
 
 	def vectorize(self, pair, debug = False):
         for feature in self.features.keys():
