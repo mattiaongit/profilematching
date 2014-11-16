@@ -37,7 +37,6 @@ class PreProcessor():
         self.targets = []
 
 
-
     def preprocess(self):
         print('Preprocessing data, as requested:')
         print('Candidate filter: {0}'.format(self.filterCandidate))
