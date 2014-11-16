@@ -57,12 +57,12 @@ class PreProcessor():
         self.targets = [1] * len(profiles) + [0] * len(profiles)
         print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
 
-
     def vectorize(self, pair, debug = False):
         for feature in self.features.keys():
             if not self.filterFeatures or feature in self.filterFeatures:
                 self.selected_features.extend(self.features[feature])
-                
+                print("DEBUG")
+
         print(self.selected_features)
         print('Features used: {0} {1}:'.format(len(self.selected_features),(not self.filterFeatures and 'All') or self.filterFeatures))
 
@@ -79,6 +79,7 @@ class PreProcessor():
         #self.data = map(self.vectorize, sample)
         for sample in self.ppdata:
             counter += 1
+            print(counter)
             self.data.append(self.vectorize(sample))
             if debug and counter % 1000 == 0:
                 print(sample)
