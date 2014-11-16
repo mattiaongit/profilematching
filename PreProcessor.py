@@ -14,7 +14,7 @@ import pdb
 class PreProcessor():
 
 	# priors 0 returns all possible priors for each candidate
-	def __init__(self, priors = 0, filterCandidate = False, filterPriors = False, Accepte priorsDistribution=True):
+	def __init__(self, priors = 0, filterCandidate = False, filterPriors = False, priorsDistribution=True):
 		self.priors = priors
 		self.pdistribution = priorsDistribution
 		self.rawdata = dataset.raw_data()
@@ -72,7 +72,7 @@ class PreProcessor():
 
 
 	def vectorizeData(self,timer = False, debug = False):
-		self.selected_features = self.features['distances'] + self.features['endogenous']
+		self.selected_features = self.features['distances']# + self.features['endogenous']
 		#self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['exogenous']['dvorak'] + self.features['endogenous'] +
 		counter = 0
 		#self.data = map(self.vectorize, sample)
