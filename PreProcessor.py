@@ -80,8 +80,7 @@ class PreProcessor():
             self.data.append(self.vectorize(sample))
             if debug and counter % (len(self.ppdata)/10) == 0:
                 print("{0}0% done ... ({1}/{2}) samples".format(counter/(len(self.ppdata)/10),counter,len(self.ppdata)))
-                print(sample)
-                print(self.vectorize(sample,debug = True))
+                print(self.vectorize(sample,debug = False))
 
     def datatargets(self):
         self.preprocess()
