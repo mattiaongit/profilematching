@@ -24,11 +24,11 @@ class PreProcessor():
         self.filterFeatures = filterFeatures
 
 		self.features = {
-			'humanlimitations': [sameUsername, ull, uucl],
-			'exogenousqwerty': [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),eachFingerRate,rowsRate],
-            'exogenousdvorak': [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand,layout='dvorak'),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger,layout='dvorak'),lambda x,y: eachFingerRate(x,y,layout='dvorak'), lambda x,y: rowsRate(x,y,layout='dvorak')],
-			'endogenous': [alphabetDistribution,shannonEntropy,lcsubstring,lcs],
-			'distances' : [levenshtein, jaccard]
+        'humanlimitations': [sameUsername, ull, uucl],
+		'exogenousqwerty': [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger),eachFingerRate,rowsRate],
+        'exogenousdvorak': [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand,layout='dvorak'),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger,layout='dvorak'),lambda x,y: eachFingerRate(x,y,layout='dvorak'), lambda x,y: rowsRate(x,y,layout='dvorak')],
+		'endogenous': [alphabetDistribution,shannonEntropy,lcsubstring,lcs],
+		'distances' : [levenshtein, jaccard]
 		}
 
 		self.selected_features = []
