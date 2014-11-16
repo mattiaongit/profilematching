@@ -55,7 +55,7 @@ class PreProcessor():
         shuffledProfiles = zip(candidates,priors)
         self.ppdata = profiles + shuffledProfiles
         self.targets = [1] * len(profiles) + [0] * len(profiles)
-        print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
+        print("Raw data is ready to extract features, n items: {0}".format(len(self.ppdata)))
 
     def vectorize(self, pair, debug = False):
         if debug:
