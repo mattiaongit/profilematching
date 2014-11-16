@@ -4,7 +4,10 @@ from PreProcessor import *
 import sklearn.preprocessing
 import pdb
 
-pp = PreProcessor(0)
+candidateClasses = ['Facebook','Google+','LinkedIn','Twitter']
+priorsClasses = ['Facebook','Google+','LinkedIn','Twitter']
+
+pp = PreProcessor(0, filterCandidate = candidateClasses, filterPriors = priorsClasses)
 data, targets = pp.datatargets()
 
 clf = Classifier('SGDClassifier',data, targets)
