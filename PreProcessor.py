@@ -41,7 +41,6 @@ class PreProcessor():
         print('Candidate filter: {0}'.format(self.filterCandidate))
         print('Priors filter: {0}'.format(self.filterPriors))
         print('Min number of priors: {0}'.format(self.minPriors))
-        print('Features used: {0}:'.format((not self.filterFeatures and 'All') or self.filterFeatures))
         profiles = []
         for profile in list(self.rawdata):
             for cKey,cUsername in profile.items():
@@ -63,6 +62,9 @@ class PreProcessor():
         for feature in self.features.keys():
             if not self.filterFeatures or feature in self.filterFeatures:
                 self.selected_features.extend(self.features[feature])
+
+        print(self.selected_features)
+        print('Features used: {0} {1}:'.format(len(self.selected_features),(not self.filterFeatures and 'All') or self.filterFeatures))
 
         if debug:
             return [(f.__name__,f(pair[0],pair[1])) for f in self.selected_features]
