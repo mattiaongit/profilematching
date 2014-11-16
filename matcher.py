@@ -7,7 +7,7 @@ import pdb
 candidateClasses = ['Facebook','Google+','LinkedIn','Twitter']
 priorsClasses = ['Facebook','Google+','LinkedIn','Twitter']
 
-pp = PreProcessor(0, minPriors=1)
+pp = PreProcessor(minPriors=1)
 data, targets = pp.datatargets()
 
 clf = Classifier('SGDClassifier',data, targets)
