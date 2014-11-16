@@ -31,7 +31,7 @@ class PreProcessor():
         'distances' : [levenshtein, jaccard]
         }
 
-		self.selected_features = []
+        self.selected_features = []
 
 		self.ppdata = []
 		self.data = []
