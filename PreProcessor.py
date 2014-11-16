@@ -16,7 +16,6 @@ class PreProcessor():
 	# priors 0 returns all possible priors for each candidate
 	def __init__(self, priors = 0, filterCandidate = False, filterPriors = False, minPriors = 1):
 		self.priors = priors
-		self.pdistribution = priorsDistribution
 		self.rawdata = dataset.raw_data()
 
 		self.filterCandidate = filterCandidate
