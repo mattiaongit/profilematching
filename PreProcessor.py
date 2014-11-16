@@ -61,17 +61,17 @@ class PreProcessor():
         print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
 
 
-    def vectorize(self, pair, debug = False):
-        for feature in self.features.keys():
-            if not self.filterFeatures or feature in self.filterFeatures:
-                self.selected_features.extend(self.features[feature])
+        def vectorize(self, pair, debug = False):
+            for feature in self.features.keys():
+                if not self.filterFeatures or feature in self.filterFeatures:
+                    self.selected_features.extend(self.features[feature])
 
-		if debug:
-            return [(f.__name__,f(pair[0],pair[1])) for f in self.selected_features]
-		else:
-            features_vector = []
-            [features_vector.extend(f(pair[0],pair[1])) for f in self.selected_features]
-            return features_vector
+            if debug:
+                return [(f.__name__,f(pair[0],pair[1])) for f in self.selected_features]
+            else:
+                features_vector = []
+                [features_vector.extend(f(pair[0],pair[1])) for f in self.selected_features]
+                return features_vector
 
 
 	def vectorizeData(self,timer = False, debug = False):
