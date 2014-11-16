@@ -49,8 +49,8 @@ class PreProcessor():
 			profiles = []
 			for profile in list(self.rawdata):
 				for cKey,cUsername in profile.items():
-					if !self.filterCandidate or cKey in self.filterCandidate:
-						profiles.append((cUsername['username'], [pUsername['username'] for pKey,pUsername in profile.items() if cKey != pKey and (!self.filterPriors or pKey in self.filterPriors)]))
+					if not self.filterCandidate or cKey in self.filterCandidate:
+						profiles.append((cUsername['username'], [pUsername['username'] for pKey,pUsername in profile.items() if cKey != pKey and ( not self.filterPriors or pKey in self.filterPriors)]))
 
 			profiles = [x for x in profiles if len(x[1]) > 0 and len(x[0]) > 0 and all([len(u) > 0 for u in x[1]])]
 			candidates, priors = zip(*profiles)
