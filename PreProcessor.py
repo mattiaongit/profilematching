@@ -28,7 +28,7 @@ class PreProcessor():
 				'dvorak': [lambda x,y: sameRate(x,y,granularitiesFunction=sameHand,layout='dvorak'),lambda x,y : sameRate(x,y,granularitiesFunction=sameFinger,layout='dvorak'),lambda x,y: eachFingerRate(x,y,layout='dvorak'), lambda x,y: rowsRate(x,y,layout='dvorak')],
 				},
 			'endogenous': [alphabetDistribution,shannonEntropy,lcsubstring,lcs],
-			'distances' : [levenshtein, jaccard]
+			'distances' : [jaccard]
 		}
 
 		self.selected_features = []
@@ -70,7 +70,7 @@ class PreProcessor():
 
 
 	def vectorizeData(self,timer = False, debug = False):
-		self.selected_features = self.features['distances'] + self.features['humanlimitations']
+		self.selected_features = self.features['distances'] #+ self.features['humanlimitations']
 		#self.features['humanlimitations'] + self.features['exogenous']['qwerty'] + self.features['exogenous']['dvorak'] + self.features['endogenous'] +
 		counter = 0
 		#self.data = map(self.vectorize, sample)
