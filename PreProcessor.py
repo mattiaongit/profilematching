@@ -82,7 +82,7 @@ class PreProcessor():
                 print(sample)
                 print(self.vectorize(sample,debug = True))
 
-	def datatargets(self):
+    def datatargets(self):
         self.preprocess()
         self.vectorizeData()
         return self.data, self.targets
