@@ -28,7 +28,7 @@ scores = ['recall', 'f1','roc_auc']
 
 
 #best_params = clf.gridSearch(tuning_parameters, scores)
-best_params = {'penalty': 'l2', 'alpha': 0.001, 'loss': 'log'}
+best_params = {'penalty': 'l2', 'alpha': 0.001, 'loss': 'log', 'shuffle': True}
 
 print(best_params)
 
