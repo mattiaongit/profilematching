@@ -61,7 +61,6 @@ class PreProcessor():
         print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
 
 	def vectorize(self, pair, debug = False):
-        
         for feature in self.features.keys():
             if not self.filterFeatures or feature in self.filterFeatures:
                 self.selected_features.extend(self.features[feature])
