@@ -38,11 +38,11 @@ class PreProcessor():
 
 
 
-	def preprocess(self):
-		print('Preprocessing data, as requested:')
-		print('Candidate filter: {0}'.format(self.filterCandidate))
-		print('Priors filter: {0}'.format(self.filterPriors))
-		print('Min number of priors: {0}'.format(self.minPriors))
+    def preprocess(self):
+        print('Preprocessing data, as requested:')
+        print('Candidate filter: {0}'.format(self.filterCandidate))
+        print('Priors filter: {0}'.format(self.filterPriors))
+        print('Min number of priors: {0}'.format(self.minPriors))
         print('Features used: {0}:'.format((not self.filterFeatures and 'All') or self.filterFeature))
         profiles = []
         for profile in list(self.rawdata):
@@ -60,7 +60,7 @@ class PreProcessor():
         self.targets = [1] * len(profiles) + [0] * len(profiles)
         print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
 
-
+            
     def vectorize(self, pair, debug = False):
         for feature in self.features.keys():
             if not self.filterFeatures or feature in self.filterFeatures:
