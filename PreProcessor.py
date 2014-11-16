@@ -66,24 +66,24 @@ class PreProcessor():
                 self.selected_features.extend(self.features[feature])
 
 		if debug:
-			return [(f.__name__,f(pair[0],pair[1])) for f in self.selected_features]
+            return [(f.__name__,f(pair[0],pair[1])) for f in self.selected_features]
 		else:
-			features_vector = []
-			[features_vector.extend(f(pair[0],pair[1])) for f in self.selected_features]
-			return features_vector
+            features_vector = []
+            [features_vector.extend(f(pair[0],pair[1])) for f in self.selected_features]
+            return features_vector
 
 
 	def vectorizeData(self,timer = False, debug = False):
         counter = 0
 		#self.data = map(self.vectorize, sample)
 		for sample in self.ppdata:
-			counter += 1
-			self.data.append(self.vectorize(sample))
-			if debug and counter % 1000 == 0:
-				print(sample)
-				print(self.vectorize(sample,debug = True))
+            counter += 1
+            self.data.append(self.vectorize(sample))
+            if debug and counter % 1000 == 0:
+                print(sample)
+                print(self.vectorize(sample,debug = True))
 
 	def datatargets(self):
-		self.preprocess()
-		self.vectorizeData()
-		return self.data, self.targets
+        self.preprocess()
+        self.vectorizeData()
+        return self.data, self.targets
