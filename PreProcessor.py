@@ -14,13 +14,14 @@ import pdb
 class PreProcessor():
 
 	# priors 0 returns all possible priors for each candidate
-	def __init__(self, priors = 0, filterCandidate = False, filterPriors = False, priorsDistribution=True):
+	def __init__(self, priors = 0, filterCandidate = False, filterPriors = False, minPriors = 1):
 		self.priors = priors
 		self.pdistribution = priorsDistribution
 		self.rawdata = dataset.raw_data()
 
 		self.filterCandidate = filterCandidate
 		self.filterPriors = filterPriors
+		self.minPriors = minPriors
 
 		self.features = {
 			'humanlimitations': [sameUsername, ull, uucl],
@@ -52,7 +53,7 @@ class PreProcessor():
 					if not self.filterCandidate or cKey in self.filterCandidate:
 						profiles.append((cUsername['username'], [pUsername['username'] for pKey,pUsername in profile.items() if cKey != pKey and ( not self.filterPriors or pKey in self.filterPriors)]))
 
-			profiles = [x for x in profiles if len(x[1]) > 0 and len(x[0]) > 0 and all([len(u) > 0 for u in x[1]])]
+			profiles = [x for x in profiles if len(x[1]) >= self.minPriors and len(x[0]) > 0 and all([len(u) > 0 for u in x[1]])]
 			candidates, priors = zip(*profiles)
 			tmp = list(candidates)
 			shuffle(tmp)
