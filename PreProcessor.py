@@ -32,10 +32,9 @@ class PreProcessor():
         }
 
         self.selected_features = []
-
-		self.ppdata = []
-		self.data = []
-		self.targets = []
+        self.ppdata = []
+        self.data = []
+        self.targets = []
 
 
 
