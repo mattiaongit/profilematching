@@ -15,7 +15,6 @@ class PreProcessor():
 
 	# priors 0 returns all possible priors for each candidate
 	def __init__(self, filterCandidate = False, filterPriors = False, minPriors = 1):
-		self.priors = priors
 		self.rawdata = dataset.raw_data()
 
 		self.filterCandidate = filterCandidate
@@ -45,7 +44,6 @@ class PreProcessor():
 		print('Candidate filter: {0}'.format(self.filterCandidate))
 		print('Priors filter: {0}'.format(self.filterPriors))
 		print('Min number of priors: {0}'.format(self.minPriors))
-		
 		profiles = []
 		for profile in list(self.rawdata):
 			for cKey,cUsername in profile.items():
