@@ -14,12 +14,12 @@ import pdb
 class PreProcessor():
 
 	# priors 0 returns all possible priors for each candidate
-	def __init__(self, filterCandidate = False, filterPriors = False, minPriors = 1, filterFeatures = False):
-		self.rawdata = dataset.raw_data()
+    def __init__(self, filterCandidate = False, filterPriors = False, minPriors = 1, filterFeatures = False):
+        self.rawdata = dataset.raw_data()
 
-		self.filterCandidate = filterCandidate
-		self.filterPriors = filterPriors
-		self.minPriors = minPriors
+        self.filterCandidate = filterCandidate
+        self.filterPriors = filterPriors
+        self.minPriors = minPriors
 
         self.filterFeatures = filterFeatures
 
@@ -60,7 +60,7 @@ class PreProcessor():
         self.targets = [1] * len(profiles) + [0] * len(profiles)
         print("Raw data is ready to extract features, n items:{0}".format(len(self.ppdata)))
 
-            
+
     def vectorize(self, pair, debug = False):
         for feature in self.features.keys():
             if not self.filterFeatures or feature in self.filterFeatures:
