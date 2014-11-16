@@ -62,7 +62,7 @@ class PreProcessor():
         for feature in self.features.keys():
             if not self.filterFeatures or feature in self.filterFeatures:
                 self.selected_features.extend(self.features[feature])
-
+                
         print(self.selected_features)
         print('Features used: {0} {1}:'.format(len(self.selected_features),(not self.filterFeatures and 'All') or self.filterFeatures))
 
