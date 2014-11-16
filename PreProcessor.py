@@ -71,7 +71,7 @@ class PreProcessor():
             if not self.filterFeatures or feature in self.filterFeatures:
                 self.selected_features.extend(self.features[feature])
 
-        print(self.selected_features)
+        print("Extracting features")
         print('Features used: {0} - Classes: {1}'.format(len(self.selected_features),(not self.filterFeatures and 'All') or self.filterFeatures))
 
         counter = 0
@@ -80,7 +80,7 @@ class PreProcessor():
             counter += 1
             self.data.append(self.vectorize(sample))
             if debug and counter % (len(self.ppdata)/10) == 0:
-                print("{0}%% done".format(counter/(len(self.ppdata)/10))))
+                print("{0}%% done ... ({1}/{2}) samples".format(counter/(len(self.ppdata)/10),counter,len(self.ppdata)))
                 print(sample)
                 print(self.vectorize(sample,debug = True))
 
