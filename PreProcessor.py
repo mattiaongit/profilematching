@@ -73,14 +73,13 @@ class PreProcessor():
 
         print("Extracting features")
         print('Features used: {0} - Classes: {1}'.format(len(self.selected_features),(not self.filterFeatures and 'All') or self.filterFeatures))
-
         counter = 0
         #self.data = map(self.vectorize, sample)
         for sample in self.ppdata:
             counter += 1
             self.data.append(self.vectorize(sample))
             if debug and counter % (len(self.ppdata)/10) == 0:
-                print("{0}%% done ... ({1}/{2}) samples".format(counter/(len(self.ppdata)/10),counter,len(self.ppdata)))
+                print("{0}0% done ... ({1}/{2}) samples".format(counter/(len(self.ppdata)/10),counter,len(self.ppdata)))
                 print(sample)
                 print(self.vectorize(sample,debug = True))
 
