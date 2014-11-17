@@ -10,7 +10,7 @@ from itertools import combinations
 import sklearn.decomposition
 
 import matplotlib as mpl
-mpl.use('GTK')
+mpl.use('Agg')
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -134,6 +134,7 @@ class PreProcessor():
         ax.w_zaxis.set_ticklabels([])
 
         plt.savefig("plot.png")
+
 
     def datatargets(self):
         self.preprocess()
