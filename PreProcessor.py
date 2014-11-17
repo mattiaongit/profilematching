@@ -84,15 +84,15 @@ class PreProcessor():
                 print("{0}0% done ... ({1}/{2}) samples".format(counter/(len(self.ppdata)/10),counter,len(self.ppdata)))
                 #print(self.vectorize(sample,debug = True))
 
-    def pca(self):
-        pca = sklearn.decomposition.PCA(n_components=3)
+    def pca(self, ncomponents):
+        print "pca!"
+        pca = sklearn.decomposition.PCA(n_components=ncomponents)
         pca.fit(self.data)
         self.data = pca.transform(self.data)
 
     def datatargets(self):
         self.preprocess()
         self.vectorizeData(debug=True)
-        print "pca!"
-        self.pca()
+        self.pca(10)
         print(self.data[:2])
         return self.data, self.targets
