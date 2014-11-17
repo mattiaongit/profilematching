@@ -7,6 +7,8 @@ from distances import *
 from random import shuffle, sample
 from itertools import combinations
 
+import sklearn.decomposition
+
 import pdb
 
 
