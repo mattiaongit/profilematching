@@ -1,5 +1,5 @@
 '''Transform raw data from dataset to a processable data format for classificators
-   Returning input vector data and data target  '''
+   'datatargets' method provide input vector data and data target  '''
 
 import dataset
 from features import *
@@ -74,7 +74,6 @@ class PreProcessor():
         print("Extracting features")
         print('Features used: {0} - Classes: {1}'.format(len(self.selected_features),(not self.filterFeatures and 'All') or self.filterFeatures))
         counter = 0
-        print(len(self.ppdata)) 
         #self.data = map(self.vectorize, sample)
         for sample in self.ppdata:
             counter += 1
@@ -83,7 +82,15 @@ class PreProcessor():
                 print("{0}0% done ... ({1}/{2}) samples".format(counter/(len(self.ppdata)/10),counter,len(self.ppdata)))
                 #print(self.vectorize(sample,debug = True))
 
+    def pca(self):
+        pca = decomposition.PCA(n_components=3)
+        pca.fit(self.data)
+        self.data = pca.transform(self.data)
+
     def datatargets(self):
         self.preprocess()
         self.vectorizeData(debug=True)
+        print "pca!"
+        self.pca()
+        print(self.data[:2])
         return self.data, self.targets
