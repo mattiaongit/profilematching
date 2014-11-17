@@ -9,6 +9,12 @@ from itertools import combinations
 
 import sklearn.decomposition
 
+import matplotlib as mpl
+mpl.use('Agg')
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
 import pdb
 
 
@@ -90,9 +96,48 @@ class PreProcessor():
         pca.fit(self.data)
         self.data = pca.transform(self.data)
 
+        np.random.seed(5)
+
+        centers = [[1, 1], [-1, -1], [1, -1]]
+        X = self.data
+        y = self.targets
+
+        fig = plt.figure(1, figsize=(4, 3))
+        plt.clf()
+        ax = Axes3D(fig, rect=[0, 0, .95, 1], elev=48, azim=134)
+
+        plt.cla()
+
+        for name, label in [('Sameuser', 0), ('Different', 1)]:
+            ax.text3D(X[y == label, 0].mean(),
+                      X[y == label, 1].mean() + 1.5,
+                      X[y == label, 2].mean(), name,
+                      horizontalalignment='center',
+                      bbox=dict(alpha=.5, edgecolor='w', facecolor='w'))
+        # Reorder the labels to have colors matching the cluster results
+        y = np.choose(y, [1, 2, 0]).astype(np.float)
+        ax.scatter(X[:, 0], X[:, 1], X[:, 2], c=y, cmap=plt.cm.spectral)
+
+        x_surf = [X[:, 0].min(), X[:, 0].max(),
+                  X[:, 0].min(), X[:, 0].max()]
+        y_surf = [X[:, 0].max(), X[:, 0].max(),
+                  X[:, 0].min(), X[:, 0].min()]
+        x_surf = np.array(x_surf)
+        y_surf = np.array(y_surf)
+        v0 = pca.transform(pca.components_[0])
+        v0 /= v0[-1]
+        v1 = pca.transform(pca.components_[1])
+        v1 /= v1[-1]
+
+        ax.w_xaxis.set_ticklabels([])
+        ax.w_yaxis.set_ticklabels([])
+        ax.w_zaxis.set_ticklabels([])
+
+        plt.show()
+
     def datatargets(self):
         self.preprocess()
         self.vectorizeData(debug=True)
-        self.pca(10)
+        self.pca(3)
         print(self.data[:2])
         return self.data, self.targets
