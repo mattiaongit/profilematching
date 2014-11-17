@@ -133,12 +133,12 @@ class PreProcessor():
         ax.w_yaxis.set_ticklabels([])
         ax.w_zaxis.set_ticklabels([])
 
-        plt.savefig("plot.png")
+        plt.savefig("plot2D.png")
 
 
     def datatargets(self):
         self.preprocess()
         self.vectorizeData(debug=True)
-        self.pca(3)
+        self.pca(2)
         print(self.data[:2])
         return self.data, self.targets
