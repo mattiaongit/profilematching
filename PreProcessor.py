@@ -104,7 +104,7 @@ class PreProcessor():
 
         fig = plt.figure(1, figsize=(8, 6))
         plt.clf()
-        ax = Axes3D(fig, rect=[0, 0, .95, 1], elev=28, azim=14)
+        ax = Axes3D(fig, rect=[0, 0, .95, 1], elev=18, azim=54)
 
         plt.cla()
 
