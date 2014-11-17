@@ -10,7 +10,7 @@ from itertools import combinations
 import sklearn.decomposition
 
 import matplotlib as mpl
-mpl.use('Agg')
+mpl.use('GTK')
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
