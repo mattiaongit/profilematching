@@ -133,7 +133,7 @@ class PreProcessor():
         ax.w_yaxis.set_ticklabels([])
         ax.w_zaxis.set_ticklabels([])
 
-        plt.show()
+        plt.savefig("plot.png")
 
     def datatargets(self):
         self.preprocess()
