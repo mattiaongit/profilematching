@@ -85,7 +85,7 @@ class PreProcessor():
                 #print(self.vectorize(sample,debug = True))
 
     def pca(self):
-        pca = decomposition.PCA(n_components=3)
+        pca = sklearn.decomposition.PCA(n_components=3)
         pca.fit(self.data)
         self.data = pca.transform(self.data)
 
