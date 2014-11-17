@@ -102,9 +102,9 @@ class PreProcessor():
         X = self.data
         y = self.targets
 
-        fig = plt.figure(1, figsize=(4, 3))
+        fig = plt.figure(1, figsize=(8, 6))
         plt.clf()
-        ax = Axes3D(fig, rect=[0, 0, .95, 1], elev=48, azim=134)
+        ax = Axes3D(fig, rect=[0, 0, .95, 1], elev=28, azim=14)
 
         plt.cla()
 
