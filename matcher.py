@@ -9,7 +9,7 @@ filterCandidate = ['Facebook','Twitter']
 filterPriors = ['Facebook','Twitter']
 filterFeatures = ['distances']#,'humanlimitations','endogenous','exogenousqwerty']
 
-pp = PreProcessor(minPriors=5, filterFeatures = filterFeatures)
+pp = PreProcessor(minPriors=6, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
 
 clf = Classifier('SGDClassifier',data, targets)
