@@ -4,12 +4,12 @@ from PreProcessor import *
 import sklearn.preprocessing
 import pdb
 
-candidateClasses = ['Facebook','Google+','LinkedIn','Twitter']
-priorsClasses = ['Facebook','Google+','LinkedIn','Twitter']
 
+filterCandidate = ['Facebook','Twitter']
+filterPriors = ['Facebook','Twitter']
 filterFeatures = ['distances','humanlimitations','endogenous','exogenousqwerty']
 
-pp = PreProcessor(minPriors=1, filterCandidate = ['Facebook','Twitter'], filterPriors = ['Facebook','Twitter'] ,filterFeatures = filterFeatures)
+pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
 
 clf = Classifier('SGDClassifier',data, targets)
