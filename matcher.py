@@ -5,11 +5,11 @@ import sklearn.preprocessing
 import pdb
 
 
-filterCandidate = ['Facebook','Twitter']
-filterPriors = ['Facebook','Twitter']
+filterCandidate = ['Facebook','Twitter','Google+','YouTube','LinkedIn','Instagram']
+filterPriors = ['Facebook','Twitter','Google+','YouTube','LinkedIn','Instagram']
 filterFeatures = ['distances','endogenous']#,'humanlimitations']#,'exogenousqwerty','exogenousdvorak']
 
-pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures)
+pp = PreProcessor(minPriors=1,filterCandidate=filterCandidate, filterPriors = filterPriors, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
 
 clf = Classifier('SGDClassifier',data, targets)
