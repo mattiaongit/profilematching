@@ -9,7 +9,7 @@ filterCandidate = ['Facebook','Twitter']
 filterPriors = ['Facebook','Twitter']
 filterFeatures = ['distances','humanlimitations','endogenous','exogenousqwerty','exogenousdvorak']
 
-pp = PreProcessor(minPriors=25, filterFeatures = filterFeatures)
+pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
 
 clf = Classifier('SGDClassifier',data, targets)
@@ -30,8 +30,8 @@ tuning_parameters = {
 scores = ['recall', 'f1','roc_auc']
 
 
-#best_params = clf.gridSearch(tuning_parameters, scores)
-best_params = {'penalty': 'l2', 'alpha': 0.001, 'loss': 'log', 'shuffle': True}
+best_params = clf.gridSearch(tuning_parameters, scores)
+#best_params = {'penalty': 'l2', 'alpha': 0.001, 'loss': 'log', 'shuffle': True}
 
 print(best_params)
 
