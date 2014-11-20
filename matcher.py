@@ -5,8 +5,8 @@ import sklearn.preprocessing
 import pdb
 
 
-filterCandidate = ['Facebook','Twitter','Google+','YouTube','LinkedIn','Instagram']
-filterPriors = ['Facebook','Twitter','Google+','YouTube','LinkedIn','Instagram']
+filterCandidate = ['Google+']
+filterPriors = ['YouTube']
 filterFeatures = ['distances','endogenous']#,'humanlimitations']#,'exogenousqwerty','exogenousdvorak']
 
 pp = PreProcessor(minPriors=1,filterCandidate=filterCandidate, filterPriors = filterPriors, filterFeatures = filterFeatures)
