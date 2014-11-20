@@ -18,6 +18,8 @@ class Classifier:
   def splitDataTrainingTest(self,fraction):
     #Split training set from data
     self.X_train, self.X_test, self.y_train, self.y_test = cross_validation.train_test_split( self.data, self.targets, test_size = len(self.data)/fraction , random_state = 0 )
+    print(self.y_train)
+    print(self.y_test)
 
 
   def normalizeData(self,scaler_function):
