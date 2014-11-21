@@ -9,7 +9,7 @@ filterCandidate = ['Google+']
 filterPriors = ['YouTube']
 filterFeatures = ['distances']#,'humanlimitations']#'endogenous','exogenousqwerty','exogenousdvorak']
 
-pp = PreProcessor(minPriors=2, filterFeatures = filterFeatures)
+pp = PreProcessor(minPriors=3, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
 
 clf = Classifier('SGDClassifier',data, targets)
