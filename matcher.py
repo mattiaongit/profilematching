@@ -7,7 +7,7 @@ import pdb
 
 filterCandidate = ['Google+']
 filterPriors = ['YouTube']
-filterFeatures = ['distances','endogenous','humanlimitations','exogenousqwerty','exogenousdvorak']
+filterFeatures = ['distances']#,'endogenous','humanlimitations','exogenousqwerty','exogenousdvorak']
 
 pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
@@ -30,10 +30,11 @@ tuning_parameters = {
 scores = ['accuracy', 'f1','roc_auc']
 
 
-best_params = clf.gridSearch(tuning_parameters, scores)
+#best_params = clf.gridSearch(tuning_parameters, scores)
 #best_params = {'penalty': 'l2', 'alpha': 0.001, 'loss': 'log', 'shuffle': True}
 #best_params = {'penalty': 'elasticnet', 'alpha': 0.001, 'loss': 'log'}
 
+best_params = {C:100, cache_size:200, class_weight:None, coef0:0.0, degree:3, gamma:0.0001, kernel:'rbf', max_iter:-1, probability:False, random_state:None, shrinking:True, tol:0.001, verbose:False}
 print(best_params)
 
 clf.train(best_params)

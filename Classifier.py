@@ -52,8 +52,8 @@ class Classifier:
   def train(self, hyperparams = {}):
     print("training ...")
     self.hparams = hyperparams
-    self.clf = linear_model.__dict__[self.model](**self.hparams)
-
+    #self.clf = linear_model.__dict__[self.model](**self.hparams)
+    self.clf = svm.SVC(**self.hparams)
     print("Classifier model {0}".format(self.model))
     print("With hyperparms\r\n: {0}".format(self.hparams))
 
