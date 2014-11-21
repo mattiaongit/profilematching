@@ -34,9 +34,17 @@ scores = ['accuracy', 'f1','roc_auc']
 #best_params = {'penalty': 'l2', 'alpha': 0.001, 'loss': 'log', 'shuffle': True}
 #best_params = {'penalty': 'elasticnet', 'alpha': 0.001, 'loss': 'log'}
 
-best_params = {'C':100, 'cache_size':200, 'class_weight':None, 'coef0':0.0, 'degree':3, 'gamma':0.0001, 'kernel':'rbf', 'max_iter':-1, 'probability':False, 'random_state':None, 'shrinking':True, 'tol':0.001, 'verbose':False}
+tuning_parameters = [
+  {'C': [1, 10, 100, 1000], 'kernel': ['linear']},
+  {'C': [1, 10, 100, 1000], 'gamma': [0.001, 0.0001], 'kernel': ['rbf']},
+ ]
+
+scores = ['accuracy', 'f1','roc_auc']
+best_params = clf.gridSearch(tuning_parameters, scores)
+
+#best_params = {'C':100, 'cache_size':200, 'class_weight':None, 'coef0':0.0, 'degree':3, 'gamma':0.0001, 'kernel':'rbf', 'max_iter':-1, 'probability':False, 'random_state':None, 'shrinking':True, 'tol':0.001, 'verbose':False}
+
+
 print(best_params)
-
 clf.train(best_params)
-
 clf.test()

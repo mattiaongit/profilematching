@@ -32,7 +32,8 @@ class Classifier:
     bests = {}
     for score in scores:
         print("# Tuning hyper-parameters for %s \r\n" % score)
-        clf = grid_search.GridSearchCV(linear_model.__dict__[self.model](), tuning_parameters, scoring=score)
+        #clf = grid_search.GridSearchCV(linear_model.__dict__[self.model](), tuning_parameters, scoring=score)
+        clf = grid_search.GridSearchCV(svmSVC(), tuning_parameters, scoring=score)
         clf.fit(self.X_train, self.y_train)
         print("Best parameters set found on development set:\r\n")
         print(clf.best_estimator_)
