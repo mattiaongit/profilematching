@@ -7,9 +7,9 @@ import pdb
 
 filterCandidate = ['Google+']
 filterPriors = ['YouTube']
-filterFeatures = ['distances','endogenous']#,'humanlimitations','exogenousqwerty','exogenousdvorak']
+filterFeatures = ['distances']#,'humanlimitations','exogenousqwerty','exogenousdvorak']
 
-pp = PreProcessor(minPriors=3, filterFeatures = filterFeatures)
+pp = PreProcessor(minPriors=7, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
 
 clf = Classifier('SGDClassifier',data, targets)
