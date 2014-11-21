@@ -9,10 +9,10 @@ filterCandidate = ['Google+']
 filterPriors = ['YouTube']
 filterFeatures = ['distances']#,'humanlimitations','exogenousqwerty','exogenousdvorak']
 
-pp = PreProcessor(minPriors=9, filterFeatures = filterFeatures)
+pp = PreProcessor(minPriors=22, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
 
-clf = Classifier('SGDClassifier',data, targets)
+clf = Classifier('PassiveAggressiveClassifier',data, targets)
 
 clf.splitDataTrainingTest(10)
 
@@ -25,6 +25,13 @@ tuning_parameters = {
     'penalty': ['l1', 'l2', 'elasticnet'],
     'alpha': [0.001, 0.0001, 0.00001, 0.000001],
     'shuffle': (True, False)
+}
+
+tuning_parameters = {
+    'C' : [0.1, 1.0, 10.0],
+    'fit_intercept': (True, False),
+    'shuffle' : (True, False),
+    'loss' : ['hinge','squared_hinge']
 }
 
 scores = ['accuracy']
