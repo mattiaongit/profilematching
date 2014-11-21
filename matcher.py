@@ -7,9 +7,9 @@ import pdb
 
 filterCandidate = ['Google+']
 filterPriors = ['YouTube']
-filterFeatures = ['distances']#,'humanlimitations','exogenousqwerty','exogenousdvorak']
+filterFeatures = ['distances','endogenous','humanlimitations','exogenousqwerty','exogenousdvorak']
 
-pp = PreProcessor(minPriors=22, filterFeatures = filterFeatures)
+pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
 
 clf = Classifier('PassiveAggressiveClassifier',data, targets)
