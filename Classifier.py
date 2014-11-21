@@ -32,8 +32,8 @@ class Classifier:
     bests = {}
     for score in scores:
         print("# Tuning hyper-parameters for %s \r\n" % score)
-        #clf = grid_search.GridSearchCV(linear_model.__dict__[self.model](), tuning_parameters, scoring=score)
-        clf = grid_search.GridSearchCV(svm.SVC(), tuning_parameters, scoring=score)
+        clf = grid_search.GridSearchCV(linear_model.__dict__[self.model](), tuning_parameters, scoring=score)
+        #clf = grid_search.GridSearchCV(svm.SVC(), tuning_parameters, scoring=score)
         clf.fit(self.X_train, self.y_train)
         print("Best parameters set found on development set:\r\n")
         print(clf.best_estimator_)
@@ -53,14 +53,14 @@ class Classifier:
   def train(self, hyperparams = {}):
     print("training ...")
     self.hparams = hyperparams
-    #self.clf = linear_model.__dict__[self.model](**self.hparams)
-    self.clf = svm.SVC(**self.hparams)
+    self.clf = linear_model.__dict__[self.model](**self.hparams)
+    #self.clf = svm.SVC(**self.hparams)
     print("Classifier model {0}".format(self.model))
     print("With hyperparms\r\n: {0}".format(self.hparams))
 
     self.clf.fit(self.X_train,self.y_train)
     print("trained, classifer internal status:")
-    #print("Features vector length {0}".format(len(self.clf.coef_[0])))
+    print("Features vector length {0}".format(len(self.clf.coef_[0])))
     #print(self.clf.coef_)
 
 
