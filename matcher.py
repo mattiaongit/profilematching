@@ -7,7 +7,7 @@ import pdb
 
 filterCandidate = ['Google+']
 filterPriors = ['YouTube']
-filterFeatures = ['distances','humanlimitations','endogenous','exogenousqwerty','exogenousdvorak']
+filterFeatures = ['distances','endogenous']#,'humanlimitations','exogenousqwerty','exogenousdvorak']
 
 pp = PreProcessor(minPriors=3, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
