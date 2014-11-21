@@ -7,7 +7,7 @@ import pdb
 
 filterCandidate = ['Google+']
 filterPriors = ['YouTube']
-filterFeatures = ['distances','exogenousqwerty']#,'humanlimitations']#,'exogenousqwerty','exogenousdvorak']
+filterFeatures = ['distances','endogenous']#,'humanlimitations']#,'exogenousqwerty','exogenousdvorak']
 
 pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures)
 data, targets = pp.datatargets()
@@ -27,7 +27,7 @@ tuning_parameters = {
     'shuffle': (True, False)
 }
 
-scores = ['recall', 'f1','roc_auc']
+scores = ['accuracy', 'f1','roc_auc']
 
 
 best_params = clf.gridSearch(tuning_parameters, scores)
