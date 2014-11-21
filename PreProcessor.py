@@ -57,10 +57,6 @@ class PreProcessor():
 
         profiles = [x for x in profiles if len(x[1]) >= self.minPriors and len(x[0]) > 0 and all([len(u) > 0 for u in x[1]])]
 
-        from collections import Counter
-        priors_info = [len(x[1]) for x in profiles]
-        print(Counter(priors_info))
-
         candidates, priors = zip(*profiles)
         tmp = list(candidates)
         shuffle(tmp)
