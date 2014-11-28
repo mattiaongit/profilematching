@@ -86,7 +86,7 @@ class PreProcessor():
         #self.data = map(self.vectorize, sample)
         for sample in self.ppdata:
             counter += 1
-            self.data.append(self.vectorize(sample))
+            self.data.append(self.vectorize(sample, debug = debug))
             if debug and counter % (len(self.ppdata)/10) == 0:
                 print("{0}0% done ... ({1}/{2}) samples".format(counter/(len(self.ppdata)/10),counter,len(self.ppdata)))
                 #print(self.vectorize(sample,debug = True))
