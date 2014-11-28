@@ -9,7 +9,7 @@ filterCandidate = ['Google+']
 filterPriors = ['YouTube']
 filterFeatures = ['humanlimitations','exogenousqwerty','exogenousdvorak','endogenous','distances']
 
-pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures)
+pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures, filterPriors= filterPriors, filterCandidate=filterCandidate)
 data, targets = pp.datatargets()
 
 clf = Classifier('PassiveAggressiveClassifier',data, targets)
