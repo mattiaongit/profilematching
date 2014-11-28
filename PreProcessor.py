@@ -68,11 +68,10 @@ class PreProcessor():
 
     def vectorize(self, pair, debug = False):
         if debug:
-            return [(f.__name__,len(f(pair[0],pair[1]))) for f in self.selected_features]
-        else:
-            features_vector = []
-            [features_vector.extend(f(pair[0],pair[1])) for f in self.selected_features]
-            return features_vector
+            print [(f.__name__,len(f(pair[0],pair[1]))) for f in self.selected_features]
+        features_vector = []
+        [features_vector.extend(f(pair[0],pair[1])) for f in self.selected_features]
+        return features_vector
 
 
     def vectorizeData(self,timer = False, debug = False):
