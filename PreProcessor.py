@@ -139,6 +139,6 @@ class PreProcessor():
 
     def datatargets(self):
         self.preprocess()
-        self.vectorizeData(debug=True)
+        self.vectorizeData(debug=False)
         #self.pca(20)
         return self.data, self.targets

@@ -1,6 +1,7 @@
 from Classifier import *
 from PreProcessor import *
 
+from sklearn.externals import joblib
 import sklearn.preprocessing
 import pdb
 
@@ -48,3 +49,5 @@ best_params = clf.gridSearch(tuning_parameters, scores)
 print(best_params)
 clf.train(best_params)
 clf.test()
+
+joblib.dump(clf, 'googleyoutube.pkl')
