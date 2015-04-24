@@ -6,8 +6,8 @@ import sklearn.preprocessing
 import pdb
 
 
-filterCandidate = ['Google+']
-filterPriors = ['YouTube']
+#filterCandidate = ['Google+']
+#filterPriors = ['YouTube']
 filterFeatures = ['humanlimitations','exogenousqwerty','exogenousdvorak','endogenous','distances']
 
 pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures, filterPriors= filterPriors, filterCandidate=filterCandidate)
@@ -50,4 +50,4 @@ print(best_params)
 clf.train(best_params)
 clf.test()
 
-joblib.dump(clf, 'googleyoutube.pkl')
+joblib.dump(clf, 'classifier_PA.pkl')
