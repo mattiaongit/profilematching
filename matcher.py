@@ -10,7 +10,7 @@ import pdb
 #filterPriors = ['YouTube']
 filterFeatures = ['humanlimitations','exogenousqwerty','exogenousdvorak','endogenous','distances']
 
-pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures, filterPriors= filterPriors, filterCandidate=filterCandidate)
+pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures, filterPriors= False, filterCandidate=False)
 data, targets = pp.datatargets()
 
 clf = Classifier('PassiveAggressiveClassifier',data, targets)
