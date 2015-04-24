@@ -50,4 +50,4 @@ print(best_params)
 clf.train(best_params)
 clf.test()
 
-joblib.dump(clf, 'classifier_PA.pkl')
+joblib.dump(clf.clf, 'classifier_PA.pkl')
