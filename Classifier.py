@@ -58,7 +58,7 @@ class Classifier:
     print("Classifier model {0}".format(self.model))
     print("With hyperparms\r\n: {0}".format(self.hparams))
 
-    self.clf.fit(self.X_train,self.y_train)
+    self.clf = self.clf.fit(self.X_train,self.y_train)
     print("trained, classifer internal status:")
     print("Features vector length {0}".format(len(self.clf.coef_[0])))
     #print(self.clf.coef_)
