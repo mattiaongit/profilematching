@@ -24,7 +24,7 @@ def load_classifier(model_file):
 
 def vectorize(pair, debug = False):
     if debug:
-        print [(f.__name__,len(f(pair[0],pair[1]))) for f in selected_features]
+        print [(f.__name__,len(f(pair[0],pair[1]))) for f in features]
     features_vector = []
-    [features_vector.extend(f(pair[0],pair[1])) for f in selected_features]
+    [features_vector.extend(f(pair[0],pair[1])) for f in features]
     return features_vector
