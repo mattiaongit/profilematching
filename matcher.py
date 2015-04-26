@@ -47,7 +47,7 @@ best_params = clf.gridSearch(tuning_parameters, scores)
 
 
 print(best_params)
-clf.train(best_params)
+#clf.train(best_params)
 clf.test()
 
 print("prediction?")
