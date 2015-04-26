@@ -10,7 +10,7 @@ filterCandidate = ['Google+']
 filterPriors = ['YouTube']
 filterFeatures = ['humanlimitations','exogenousqwerty','exogenousdvorak','endogenous','distances']
 
-pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures, filterPriors= filterPriors, filterCandidate=filterCandidate)
+pp = PreProcessor(minPriors=1, filterFeatures = filterFeatures, filterPriors= None, filterCandidate=None)
 data, targets = pp.datatargets()
 
 clf = Classifier('PassiveAggressiveClassifier',data, targets)
@@ -55,4 +55,4 @@ print(clf.clf.predict(clf.data[0]))
 
 print("dumping models...")
 #joblib.dump(clf, 'classifier_gplus_youtube_PA.pkl')
-joblib.dump(clf.clf, 'classifier_clf_gplus_youtube_PA.pkl')
+joblib.dump(clf.clf, 'classifier_clf_PA.pkl')
