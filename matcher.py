@@ -55,4 +55,4 @@ print(clf.clf.predict(clf.data[0]))
 
 print("dumping models...")
 #joblib.dump(clf, 'classifier_gplus_youtube_PA.pkl')
-joblib.dump(clf.clf, 'classifier_clf_PA.pkl')
+#joblib.dump(clf.clf, 'classifier_clf_PA.pkl')
