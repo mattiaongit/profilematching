@@ -1,16 +1,12 @@
 import sys
 python = sys.version_info[0]
 
-
 if python < 3:
   from numpy import mean, std, median
   stats_functions = [mean, std, median, min, max]
 else:
   from statistics import *
   stats_functions = [mean, stdev, median, min, max]
-
-
-
 
 def distribution(v):
   v = list(v) # if v is a tuple
