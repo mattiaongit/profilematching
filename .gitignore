@@ -1,5 +1,7 @@
 __pycache__/
 *.py[cod]
+*.plk
+*.npy
 
 *.un~
 *~
